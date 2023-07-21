@@ -8,9 +8,9 @@ import de.nimarion.osv.protocol.frontcamera.packet.EnteredFrontcameraPacket;
 import de.nimarion.osv.protocol.frontcamera.packet.ExitedFrontcameraPacket;
 import de.nimarion.osv.protocol.frontcamera.packet.StartedFrontcameraPacket;
 
-public class FrontcamerClient extends TCPClient {
+public class FrontcameraClient extends TCPClient {
 
-    public FrontcamerClient(String host, int port) {
+    public FrontcameraClient(String host, int port) {
         super(host, port);
         registerPacket(new DaytimeFrontcameraPacket());
         registerPacket(new EnteredFrontcameraPacket());

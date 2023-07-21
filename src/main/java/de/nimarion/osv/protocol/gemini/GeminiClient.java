@@ -6,6 +6,7 @@ import de.nimarion.osv.protocol.Packet;
 import de.nimarion.osv.protocol.gemini.packet.AlphaLinePacket;
 import de.nimarion.osv.protocol.gemini.packet.ClearDisplayPacket;
 import de.nimarion.osv.protocol.gemini.packet.LuminosityPacket;
+import de.nimarion.osv.protocol.gemini.packet.NetTimePacket;
 import de.nimarion.osv.protocol.gemini.packet.ResultLinePacket;
 import de.nimarion.osv.protocol.gemini.packet.RunningTimePacket;
 
@@ -18,6 +19,7 @@ public class GeminiClient extends TCPClient {
         registerPacket(new RunningTimePacket());
         registerPacket(new AlphaLinePacket());
         registerPacket(new ResultLinePacket());
+        registerPacket(new NetTimePacket());
     }
 
     @Override

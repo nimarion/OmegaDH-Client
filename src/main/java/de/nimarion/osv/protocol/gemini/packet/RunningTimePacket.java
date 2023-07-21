@@ -6,16 +6,17 @@ import de.nimarion.osv.protocol.gemini.event.RunningTimeEvent;
 
 /**
  * Name, RunningTimeA, RunningTimeB, DayTime
- * Group: RunningTime_HHMMSS;RunningTime_HMMSSD;RunningTime_MMSSDC;RunningTime_MSSDCM
- * Message: <SOH><DC4>R00<STX><BS>   <STX>hh:mm:ss.d  <EOT> 
- *          <SOH><DC4>R01<STX><BS>   <STX>hh:mm:ss.d  <EOT>
- *          <SOH><DC4>R02<STX><BS>   <STX>hh:mm:ss.d  <EOT>
-            <SOH><DC4>R03<STX><BS>   <STX>hh:mm:ss.d  <EOT>
-            -- RunningTimeB -- 
-            <SOH><DC4>R00<STX><BS><LF>   <STX>hh:mm:ss.d  <EOT>
-            <SOH><DC4>R01<STX><BS><LF>   <STX>hh:mm:ss.d  <EOT>
-            <SOH><DC4>R02<STX><BS><LF>   <STX>hh:mm:ss.d  <EOT>
-            <SOH><DC4>R03<STX><BS><LF>   <STX>hh:mm:ss.d  <EOT>
+ * Group:
+ * RunningTime_HHMMSS;RunningTime_HMMSSD;RunningTime_MMSSDC;RunningTime_MSSDCM
+ * Message: <SOH><DC4>R00<STX><BS> <STX>hh:mm:ss.d <EOT>
+ * <SOH><DC4>R01<STX><BS> <STX>hh:mm:ss.d <EOT>
+ * <SOH><DC4>R02<STX><BS> <STX>hh:mm:ss.d <EOT>
+ * <SOH><DC4>R03<STX><BS> <STX>hh:mm:ss.d <EOT>
+ * -- RunningTimeB --
+ * <SOH><DC4>R00<STX><BS><LF> <STX>hh:mm:ss.d <EOT>
+ * <SOH><DC4>R01<STX><BS><LF> <STX>hh:mm:ss.d <EOT>
+ * <SOH><DC4>R02<STX><BS><LF> <STX>hh:mm:ss.d <EOT>
+ * <SOH><DC4>R03<STX><BS><LF> <STX>hh:mm:ss.d <EOT>
  */
 public class RunningTimePacket extends GeminiPacket {
 
@@ -36,11 +37,8 @@ public class RunningTimePacket extends GeminiPacket {
 
     @Override
     public Event handleData(String data) {
-        boolean runningTimeA =  ((int) data.charAt(7)) == 32;
-        System.out.println("RunningTimeA: " + runningTimeA);
-        int mode = Integer.parseInt(data.substring(3, 5));
         int startIndex = data.lastIndexOf('\u0002');
         String time = data.substring(startIndex, startIndex + 12).trim();
-        return new RunningTimeEvent(mode, time);
+        return new RunningTimeEvent(time);
     }
 }
