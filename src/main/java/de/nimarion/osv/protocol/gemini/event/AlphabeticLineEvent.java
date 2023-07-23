@@ -1,8 +1,8 @@
 package de.nimarion.osv.protocol.gemini.event;
 
-import de.nimarion.osv.protocol.Event;
+import de.nimarion.osv.protocol.gemini.GeminiEvent;
 
-public class AlphabeticLineEvent extends Event {
+public class AlphabeticLineEvent extends GeminiEvent {
 
     private String text;
     private int line;

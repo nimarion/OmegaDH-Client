@@ -1,14 +1,13 @@
-
 package de.nimarion.osv.protocol.omega.event;
 
 import de.nimarion.osv.protocol.omega.OmegaEvent;
 
-public class CurrentRacetimeCursorEvent extends OmegaEvent {
+public class NetTimeEvent extends OmegaEvent {
 
-    private final String time;
+    private String time;
 
-    public CurrentRacetimeCursorEvent(String time) {
-        super("CURRENT_RACETIME_CURSOR");
+    public NetTimeEvent(String time) {
+        super("NET_TIME");
         this.time = time;
     }
 

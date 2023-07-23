@@ -22,7 +22,7 @@ public class DeleteResultPacket extends OmegaPacket {
     @Override
     public Event handleData(String asciiString) {
         char data[] = asciiString.toCharArray();
-        String bib =new String(Arrays.copyOfRange(data, 0, 5)).trim();
+        int  bib = Integer.parseInt(new String(Arrays.copyOfRange(data, 0, 5)).trim());
         int lane = Integer.parseInt(new String(Arrays.copyOfRange(data, 5, 7)).trim());
         return new DeleteResultEvent(bib, lane);
     }

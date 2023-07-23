@@ -1,8 +1,8 @@
 package de.nimarion.osv.protocol.frontcamera.event;
 
-import de.nimarion.osv.protocol.Event;
+import de.nimarion.osv.protocol.frontcamera.FrontcameraEvent;
 
-public class EnteredFrontcameraEvent extends Event {
+public class EnteredFrontcameraEvent extends FrontcameraEvent {
 
     private final String raceId;
 

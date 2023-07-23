@@ -1,8 +1,8 @@
 package de.nimarion.osv.protocol.gemini.event;
 
-import de.nimarion.osv.protocol.Event;
+import de.nimarion.osv.protocol.gemini.GeminiEvent;
 
-public class LuminosityEvent extends Event{
+public class LuminosityEvent extends GeminiEvent{
 
     private int level;
 

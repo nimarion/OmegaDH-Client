@@ -24,7 +24,7 @@ public class TemporaryResultPacket extends OmegaPacket {
     @Override
     public Event handleData(String dataString) {
         char[] data = dataString.toCharArray();
-        String bib = new String(Arrays.copyOfRange(data, 0, 5)).trim();
+        int bib = Integer.parseInt(new String(Arrays.copyOfRange(data, 0, 5)).trim());
         int lane = Integer.parseInt(new String(Arrays.copyOfRange(data, 5, 7)).trim());
         String time = new String(Arrays.copyOfRange(data, 7, 19)).trim();
         return new TemporaryResultEvent(bib, lane, time);

@@ -1,19 +1,19 @@
 package de.nimarion.osv.protocol.omega.event;
 
-import de.nimarion.osv.protocol.Event;
+import de.nimarion.osv.protocol.omega.OmegaEvent;
 
-public class DeleteResultEvent extends Event{
+public class DeleteResultEvent extends OmegaEvent{
 
-    private String bib;
+    private int bib;
     private int lane;
 
-    public DeleteResultEvent(String bib, int lane) {
+    public DeleteResultEvent(int bib, int lane) {
         super("DELETE_RESULT");
         this.bib = bib;
         this.lane = lane;
     }
 
-    public String getBib() {
+    public int getBib() {
         return bib;
     }
 

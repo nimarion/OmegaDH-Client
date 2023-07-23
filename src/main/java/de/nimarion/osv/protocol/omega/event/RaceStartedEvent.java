@@ -1,8 +1,8 @@
 package de.nimarion.osv.protocol.omega.event;
 
-import de.nimarion.osv.protocol.Event;
+import de.nimarion.osv.protocol.omega.OmegaEvent;
 
-public class RaceStartedEvent extends Event {
+public class RaceStartedEvent extends OmegaEvent {
 
     private final boolean timeTrial;
     private final String race_start_time;

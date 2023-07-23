@@ -36,7 +36,7 @@ public class ReactionTimePacket extends OmegaPacket {
         // indicate a reaction time packet there <SOH><DC3>DVRTC<STX> 0 %2%3 %1%4<EOT>
         dataString = dataString.substring(8, dataString.length());
         char[] data = dataString.toCharArray();
-        String bib = new String(Arrays.copyOfRange(data, 0, 5)).trim();
+        int bib = Integer.parseInt(new String(Arrays.copyOfRange(data, 0, 5)).trim());
         int lane = Integer.parseInt(new String(Arrays.copyOfRange(data, 5, 7)).trim());
         String reactionTime = new String(Arrays.copyOfRange(data, 12, 18)).trim();
         String reactionFlag = new String(Arrays.copyOfRange(data, 18, 19)).trim();

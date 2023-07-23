@@ -21,8 +21,10 @@ import de.nimarion.osv.protocol.omega.packet.CurrentRacetimeCursorPacket;
 import de.nimarion.osv.protocol.omega.packet.DeleteResultPacket;
 import de.nimarion.osv.protocol.omega.packet.EndRankingPacket;
 import de.nimarion.osv.protocol.omega.packet.EnterRacePacket;
+import de.nimarion.osv.protocol.omega.packet.FalseStartPacket;
 import de.nimarion.osv.protocol.omega.packet.NetTimePacket;
 import de.nimarion.osv.protocol.omega.packet.ReactionTimePacket;
+import de.nimarion.osv.protocol.omega.packet.RecoverFinishPacket;
 import de.nimarion.osv.protocol.omega.packet.ResultHundredsPacket;
 import de.nimarion.osv.protocol.omega.packet.ResultIntermediatePacket;
 import de.nimarion.osv.protocol.omega.packet.ResultThousandsPacket;
@@ -32,6 +34,7 @@ import de.nimarion.osv.protocol.omega.packet.StartedPacket;
 import de.nimarion.osv.protocol.omega.packet.SupplementaryInfoDataPacket;
 import de.nimarion.osv.protocol.omega.packet.SupplementaryInfoHeaderPacket;
 import de.nimarion.osv.protocol.omega.packet.TemporaryResultPacket;
+import de.nimarion.osv.protocol.omega.packet.TimeTrialStartedPacket;
 import de.nimarion.osv.protocol.omega.packet.WindPacket;
 
 public class OmegaClient extends TCPClient {
@@ -40,7 +43,7 @@ public class OmegaClient extends TCPClient {
             .asList(new String[] { "DNS", "No Time", "DNF", "DQ", "USER1", "USER2", "USER3" });
     private String currentRaceId = null;
     private boolean rankingStarted = false;
-    private Map<String, String> bibTimeHundreds = new HashMap<>();
+    private Map<Integer, String> bibTimeHundreds = new HashMap<>();
 
     public OmegaClient(String host, int port) {
         super(host, port);
@@ -61,6 +64,9 @@ public class OmegaClient extends TCPClient {
         registerPacket(new ResultsOfficalPacket());
         registerPacket(new StartedPacket());
         registerPacket(new NetTimePacket());
+        registerPacket(new RecoverFinishPacket());
+        registerPacket(new FalseStartPacket());
+        registerPacket(new TimeTrialStartedPacket());
     }
 
     @Override

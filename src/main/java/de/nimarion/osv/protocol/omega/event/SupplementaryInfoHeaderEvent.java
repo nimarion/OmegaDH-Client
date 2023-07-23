@@ -1,11 +1,11 @@
 
 package de.nimarion.osv.protocol.omega.event;
 
-import de.nimarion.osv.protocol.Event;
+import de.nimarion.osv.protocol.omega.OmegaEvent;
 
 import java.util.List;
 
-public class SupplementaryInfoHeaderEvent extends Event {
+public class SupplementaryInfoHeaderEvent extends OmegaEvent {
 
     private final List<String> fields;
     private final List<Integer> lengths;

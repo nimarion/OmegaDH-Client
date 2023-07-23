@@ -38,7 +38,7 @@ public class ResultIntermediatePacket extends OmegaPacket {
         char[] data = dataString.toCharArray();
         int lap = Integer.parseInt(new String(Arrays.copyOfRange(data, 0, 4)).trim());
         int rank = Integer.parseInt(new String(Arrays.copyOfRange(data, 4, 7)).trim());
-        String bib = new String(Arrays.copyOfRange(data, 7, 12)).trim();
+        int bib = Integer.parseInt(new String(Arrays.copyOfRange(data, 7, 12)).trim());
         int lane = Integer.parseInt(new String(Arrays.copyOfRange(data, 12, 14)).trim());
         String time = new String(Arrays.copyOfRange(data, 14, data.length)).trim();
         return new ResultIntermediateEvent(lap, rank, bib, lane, time);

@@ -1,16 +1,16 @@
 package de.nimarion.osv.protocol.omega.event;
 
-import de.nimarion.osv.protocol.Event;
+import de.nimarion.osv.protocol.omega.OmegaEvent;
 
-public class ResultIntermediateEvent extends Event {
+public class ResultIntermediateEvent extends OmegaEvent {
 
     private final int lap;
     private final int rank;
-    private final String bib;
+    private final int bib;
     private final int lane;
     private final String time;
 
-    public ResultIntermediateEvent(int lap, int rank, String bib, int lane, String time) {
+    public ResultIntermediateEvent(int lap, int rank, int bib, int lane, String time) {
         super("RESULT_INTERMEDIATE");
         this.lap = lap;
         this.rank = rank;
@@ -31,7 +31,7 @@ public class ResultIntermediateEvent extends Event {
         return lane;
     }
 
-    public String getBib() {
+    public int getBib() {
         return bib;
     }
 

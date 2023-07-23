@@ -2,8 +2,7 @@ package de.nimarion.osv.protocol.gemini.packet;
 
 import de.nimarion.osv.protocol.Event;
 import de.nimarion.osv.protocol.gemini.GeminiPacket;
-import de.nimarion.osv.protocol.gemini.event.EndOfAcquisitionEvent;
-import de.nimarion.osv.protocol.gemini.event.StartReadyEvent;
+import de.nimarion.osv.protocol.gemini.event.RunningTimeEvent;
 
 /**
  * Name: NetTimeA, NetTimeB
@@ -49,14 +48,12 @@ public class NetTimePacket extends GeminiPacket {
         public Event handleData(String data) {
                 String time = data.substring(data.lastIndexOf('\u0002')).trim();
                 if (time.isEmpty()) {
-                        return new EndOfAcquisitionEvent();
+                        return null;
                 }
                 if (time.equals("0.0")) {
-                        return new StartReadyEvent();
+                        return new RunningTimeEvent(time, false);
                 }
-                boolean netTimeA = ((int) data.charAt(7)) == 32;
-                System.out.println("NetTimeA: " + netTimeA + " Time: " + time);
-                return null;
+                return new RunningTimeEvent(time, true);
         }
 
 }

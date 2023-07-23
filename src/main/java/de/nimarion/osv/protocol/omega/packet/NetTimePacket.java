@@ -2,6 +2,7 @@ package de.nimarion.osv.protocol.omega.packet;
 
 import de.nimarion.osv.protocol.Event;
 import de.nimarion.osv.protocol.omega.OmegaPacket;
+import de.nimarion.osv.protocol.omega.event.NetTimeEvent;
 
 /**
  * Name: [NetTimeA]
@@ -17,9 +18,7 @@ public class NetTimePacket extends OmegaPacket{
 
     @Override
     public Event handleData(String data) {
-        System.out.println("NetTimePacket -> RaceNetTime: " + data.trim());
-        return null;
+        return new NetTimeEvent(data.trim());
     }
  
-    
 }

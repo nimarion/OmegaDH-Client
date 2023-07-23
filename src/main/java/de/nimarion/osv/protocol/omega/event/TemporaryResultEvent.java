@@ -1,21 +1,21 @@
 package de.nimarion.osv.protocol.omega.event;
 
-import de.nimarion.osv.protocol.Event;
+import de.nimarion.osv.protocol.omega.OmegaEvent;
 
-public class TemporaryResultEvent extends Event {
+public class TemporaryResultEvent extends OmegaEvent {
 
-    private final String bib;
+    private final int bib;
     private final int lane;
     private final String time;
 
-    public TemporaryResultEvent(String bib, int lane, String time) {
+    public TemporaryResultEvent(int bib, int lane, String time) {
         super("TEMPORARY_RESULT");
         this.bib = bib;
         this.lane = lane;
         this.time = time;
     }
 
-    public String getBib() {
+    public int getBib() {
         return bib;
     }
 

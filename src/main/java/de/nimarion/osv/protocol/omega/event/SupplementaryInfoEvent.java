@@ -1,10 +1,11 @@
 
 package de.nimarion.osv.protocol.omega.event;
 
-import de.nimarion.osv.protocol.Event;
+import de.nimarion.osv.protocol.omega.OmegaEvent;
+
 import java.util.Map;
 
-public class SupplementaryInfoEvent extends Event {
+public class SupplementaryInfoEvent extends OmegaEvent {
 
     private final Map<String, String> fields;
 

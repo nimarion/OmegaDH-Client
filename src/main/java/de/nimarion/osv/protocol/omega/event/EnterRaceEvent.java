@@ -1,8 +1,8 @@
 package de.nimarion.osv.protocol.omega.event;
 
-import de.nimarion.osv.protocol.Event;
+import de.nimarion.osv.protocol.omega.OmegaEvent;
 
-public class EnterRaceEvent extends Event {
+public class EnterRaceEvent extends OmegaEvent {
 
     private final String raceId;
 

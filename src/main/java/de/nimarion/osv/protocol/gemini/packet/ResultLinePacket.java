@@ -2,8 +2,8 @@ package de.nimarion.osv.protocol.gemini.packet;
 
 import de.nimarion.osv.protocol.Event;
 import de.nimarion.osv.protocol.gemini.GeminiPacket;
-import de.nimarion.osv.protocol.gemini.event.IntermediateTimeEvent;
 import de.nimarion.osv.protocol.gemini.event.ResultEvent;
+import de.nimarion.osv.protocol.gemini.event.RunningTimeEvent;
 
 /**
  * Name: Line
@@ -67,7 +67,7 @@ public class ResultLinePacket extends GeminiPacket {
             firstdata = firstdata.substring(firstdata.lastIndexOf("\n") + 1);
         } else if ((int) firstdata.charAt(0) == 73) { // I
             int intermediateCount = Integer.parseInt(firstdata.substring(1, 3).trim());
-            return new IntermediateTimeEvent(intermediateCount, time);
+            return new RunningTimeEvent(time, intermediateCount);
         } else {
             firstdata = firstdata.substring(firstdata.lastIndexOf('\u0008') + 1);
         }
@@ -77,7 +77,7 @@ public class ResultLinePacket extends GeminiPacket {
             int lane = Character.getNumericValue(firstdata.charAt(2));
             return new ResultEvent(line, rank, lane, time);
         }
-        String bib = firstdata.trim();
+        int bib = Integer.parseInt(firstdata.trim());
         return new ResultEvent(line, bib, time);
     }
 

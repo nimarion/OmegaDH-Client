@@ -1,16 +1,16 @@
 package de.nimarion.osv.protocol.omega.event;
 
-import de.nimarion.osv.protocol.Event;
+import de.nimarion.osv.protocol.omega.OmegaEvent;
 
-public class ResultEvent extends Event {
+public class ResultEvent extends OmegaEvent {
 
     private final Integer rank;
-    private final String bib;
+    private final int bib;
     private final int lane;
     private final String time;
     private final String time_thousands;
 
-    public ResultEvent(Integer rank, String bib, int lane, String time, String time_thousands) {
+    public ResultEvent(Integer rank, int bib, int lane, String time, String time_thousands) {
         super("RESULT");
         this.rank = rank;
         this.bib = bib;
@@ -23,7 +23,7 @@ public class ResultEvent extends Event {
         return rank;
     }
 
-    public String getBib() {
+    public int getBib() {
         return bib;
     }
 

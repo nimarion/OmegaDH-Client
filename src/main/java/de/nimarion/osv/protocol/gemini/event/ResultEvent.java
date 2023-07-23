@@ -1,11 +1,11 @@
 package de.nimarion.osv.protocol.gemini.event;
 
-import de.nimarion.osv.protocol.Event;
+import de.nimarion.osv.protocol.gemini.GeminiEvent;
 
-public class ResultEvent extends Event {
+public class ResultEvent extends GeminiEvent {
 
     private final int line;
-    private final String bib;
+    private final Integer bib;
     private final Integer rank;
     private final Integer lane;
     private final String time;
@@ -19,7 +19,7 @@ public class ResultEvent extends Event {
         this.time = time;
     }
 
-    public ResultEvent(int line, String bib, String time) {
+    public ResultEvent(int line, Integer bib, String time) {
         super("RESULT");
         this.line = line;
         this.bib = bib;
@@ -40,7 +40,7 @@ public class ResultEvent extends Event {
         return time;
     }
 
-    public String getBib() {
+    public Integer getBib() {
         return bib;
     }
 
