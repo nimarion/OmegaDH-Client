@@ -16,26 +16,6 @@ import de.nimarion.osv.protocol.omega.event.ResultThousandsEvent;
 import de.nimarion.osv.protocol.omega.event.StartRankingEvent;
 import de.nimarion.osv.protocol.omega.event.SupplementaryInfoDataEvent;
 import de.nimarion.osv.protocol.omega.event.SupplementaryInfoHeaderEvent;
-import de.nimarion.osv.protocol.omega.packet.CurrentDaytimeCursorPacket;
-import de.nimarion.osv.protocol.omega.packet.CurrentRacetimeCursorPacket;
-import de.nimarion.osv.protocol.omega.packet.DeleteResultPacket;
-import de.nimarion.osv.protocol.omega.packet.EndRankingPacket;
-import de.nimarion.osv.protocol.omega.packet.EnterRacePacket;
-import de.nimarion.osv.protocol.omega.packet.FalseStartPacket;
-import de.nimarion.osv.protocol.omega.packet.NetTimePacket;
-import de.nimarion.osv.protocol.omega.packet.ReactionTimePacket;
-import de.nimarion.osv.protocol.omega.packet.RecoverFinishPacket;
-import de.nimarion.osv.protocol.omega.packet.ResultHundredsPacket;
-import de.nimarion.osv.protocol.omega.packet.ResultIntermediatePacket;
-import de.nimarion.osv.protocol.omega.packet.ResultThousandsPacket;
-import de.nimarion.osv.protocol.omega.packet.ResultsOfficalPacket;
-import de.nimarion.osv.protocol.omega.packet.StartRankingPacket;
-import de.nimarion.osv.protocol.omega.packet.StartedPacket;
-import de.nimarion.osv.protocol.omega.packet.SupplementaryInfoDataPacket;
-import de.nimarion.osv.protocol.omega.packet.SupplementaryInfoHeaderPacket;
-import de.nimarion.osv.protocol.omega.packet.TemporaryResultPacket;
-import de.nimarion.osv.protocol.omega.packet.TimeTrialStartedPacket;
-import de.nimarion.osv.protocol.omega.packet.WindPacket;
 
 public class OmegaClient extends TCPClient {
 
@@ -47,26 +27,6 @@ public class OmegaClient extends TCPClient {
 
     public OmegaClient(String host, int port) {
         super(host, port);
-        registerPacket(new EnterRacePacket());
-        registerPacket(new DeleteResultPacket());
-        registerPacket(new StartRankingPacket());
-        registerPacket(new EndRankingPacket());
-        registerPacket(new CurrentDaytimeCursorPacket());
-        registerPacket(new CurrentRacetimeCursorPacket());
-        registerPacket(new WindPacket());
-        registerPacket(new SupplementaryInfoHeaderPacket());
-        registerPacket(new SupplementaryInfoDataPacket());
-        registerPacket(new ReactionTimePacket());
-        registerPacket(new ResultThousandsPacket());
-        registerPacket(new ResultHundredsPacket());
-        registerPacket(new TemporaryResultPacket());
-        registerPacket(new ResultIntermediatePacket());
-        registerPacket(new ResultsOfficalPacket());
-        registerPacket(new StartedPacket());
-        registerPacket(new NetTimePacket());
-        registerPacket(new RecoverFinishPacket());
-        registerPacket(new FalseStartPacket());
-        registerPacket(new TimeTrialStartedPacket());
     }
 
     @Override

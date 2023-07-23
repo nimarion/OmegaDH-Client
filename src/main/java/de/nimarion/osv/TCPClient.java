@@ -6,7 +6,10 @@ import java.io.InputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
+
+import org.reflections.Reflections;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -27,6 +30,19 @@ public abstract class TCPClient extends Thread {
         this.host = host;
         this.port = port;
         this.packets = new ArrayList<>();
+        final Set<Class<? extends Packet>> packets = new Reflections(this.getClass().getPackageName() + ".packet")
+                .getSubTypesOf(Packet.class);
+        for (Class<? extends Packet> packetClass : packets) {
+            try {
+                final Packet packet = packetClass.getDeclaredConstructor().newInstance();
+                if (this.packets.add(packet)) {
+                    System.out.println("Registered " + packet.getClass().getSimpleName() + " Packet");
+                }
+            } catch (Exception exception) {
+                System.out.println("Failed to register " + packetClass.getSimpleName() + " Packet");
+                exception.printStackTrace();
+            }
+        }
     }
 
     private Packet getPacket(byte[] data) {
@@ -36,10 +52,6 @@ public abstract class TCPClient extends Thread {
             }
         }
         return null;
-    }
-
-    public void registerPacket(Packet packet) {
-        packets.add(packet);
     }
 
     public void handleEvent(Event event) {
@@ -72,7 +84,7 @@ public abstract class TCPClient extends Thread {
                                 if (packet != null) {
                                     handleData(packet, bytes);
                                 } else {
-                                    System.out.println("Unknown packet: " + new String(bytes));
+                                    System.out.println("Unknown packet: " + StringUtils.toAscii(new String(bytes)));
                                 }
                             } catch (Exception ex) {
                                 ex.printStackTrace();

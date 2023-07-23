@@ -3,19 +3,11 @@ package de.nimarion.osv.protocol.frontcamera;
 import de.nimarion.osv.TCPClient;
 import de.nimarion.osv.protocol.Event;
 import de.nimarion.osv.protocol.Packet;
-import de.nimarion.osv.protocol.frontcamera.packet.DaytimeFrontcameraPacket;
-import de.nimarion.osv.protocol.frontcamera.packet.EnteredFrontcameraPacket;
-import de.nimarion.osv.protocol.frontcamera.packet.ExitedFrontcameraPacket;
-import de.nimarion.osv.protocol.frontcamera.packet.StartedFrontcameraPacket;
 
 public class FrontcameraClient extends TCPClient {
 
     public FrontcameraClient(String host, int port) {
         super(host, port);
-        registerPacket(new DaytimeFrontcameraPacket());
-        registerPacket(new EnteredFrontcameraPacket());
-        registerPacket(new ExitedFrontcameraPacket());
-        registerPacket(new StartedFrontcameraPacket());
     }
 
     @Override
