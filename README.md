@@ -23,7 +23,7 @@ Example output for the gemini protocol:
 Currently implemented Protocols:
 
 - [x] Gemini
-- [ ] Gemini Wind
+- [x] Gemini Wind
 - [x] Omega
 - [x] Frontcamera
 
