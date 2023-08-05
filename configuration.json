@@ -1,0 +1,24 @@
+{
+  "networkBindAddress": "192.168.178.23",
+  "broadcastAddress": "192.168.178.255",
+  "frontcamera": {
+    "ip": "192.168.100.101",
+    "port": 2023,
+    "enabled": false
+  },
+  "omega": {
+    "ip": "127.0.0.1",
+    "port": 2020,
+    "enabled": false
+  },
+  "gemini": {
+    "ip": "192.168.100.101",
+    "port": 2021,
+    "enabled": true
+  },
+  "geminiWind": {
+    "ip": "192.168.100.101",
+    "port": 2022,
+    "enabled": false
+  }
+}

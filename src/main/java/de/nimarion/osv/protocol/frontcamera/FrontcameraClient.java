@@ -3,11 +3,16 @@ package de.nimarion.osv.protocol.frontcamera;
 import de.nimarion.osv.TCPClient;
 import de.nimarion.osv.protocol.Event;
 import de.nimarion.osv.protocol.Packet;
+import de.nimarion.osv.protocol.ProtocolConfiguration;
 
 public class FrontcameraClient extends TCPClient {
 
     public FrontcameraClient(String host, int port) {
         super(host, port);
+    }
+
+    public FrontcameraClient(ProtocolConfiguration protocolConfiguration) {
+        super(protocolConfiguration);
     }
 
     @Override

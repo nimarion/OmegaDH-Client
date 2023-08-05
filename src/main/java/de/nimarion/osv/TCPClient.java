@@ -12,24 +12,27 @@ import java.util.concurrent.TimeUnit;
 import org.reflections.Reflections;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import de.nimarion.osv.protocol.Event;
 import de.nimarion.osv.protocol.Packet;
+import de.nimarion.osv.protocol.ProtocolConfiguration;
+import de.nimarion.osv.utils.StringUtils;
 
 public abstract class TCPClient extends Thread {
 
-    private static final Gson GSON = new GsonBuilder().create();
     private final String host;
     private final int port;
     private final List<Packet> packets;
     private int autoReconnectDelay = 5;
     private boolean active = true;
+    private List<EventHandler> eventHandlers;
 
     public TCPClient(String host, int port) {
+        System.out.println("Starting " + this.getClass().getSimpleName() + " Client on " + host + ":" + port);
         this.host = host;
         this.port = port;
         this.packets = new ArrayList<>();
+        this.eventHandlers = new ArrayList<>();
         final Set<Class<? extends Packet>> packets = new Reflections(this.getClass().getPackageName() + ".packet")
                 .getSubTypesOf(Packet.class);
         for (Class<? extends Packet> packetClass : packets) {
@@ -45,6 +48,10 @@ public abstract class TCPClient extends Thread {
         }
     }
 
+    public TCPClient(ProtocolConfiguration protocolConfiguration) {
+        this(protocolConfiguration.getIp(), protocolConfiguration.getPort());
+    }
+
     private Packet getPacket(byte[] data) {
         for (Packet packet : packets) {
             if (packet.isPacket(data)) {
@@ -54,8 +61,23 @@ public abstract class TCPClient extends Thread {
         return null;
     }
 
+    public void registerPacket(Packet packet) {
+        packets.add(packet);
+    }
+
+    public void addEventHandler(EventHandler eventHandler) {
+        eventHandlers.add(eventHandler);
+    }
+
+    public void removeEventHandler(EventHandler eventHandler) {
+        eventHandlers.remove(eventHandler);
+    }
+
     public void handleEvent(Event event) {
-        System.out.println(GSON.toJson(event));
+        System.out.println(new Gson().toJson(event));
+        for (EventHandler eventHandler : eventHandlers) {
+            eventHandler.handleEvent(event);
+        }
     }
 
     public abstract void handleData(Packet packet, byte[] data);

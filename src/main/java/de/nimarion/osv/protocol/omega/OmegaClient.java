@@ -8,6 +8,7 @@ import java.util.Map;
 import de.nimarion.osv.TCPClient;
 import de.nimarion.osv.protocol.Event;
 import de.nimarion.osv.protocol.Packet;
+import de.nimarion.osv.protocol.ProtocolConfiguration;
 import de.nimarion.osv.protocol.omega.event.EndRankingEvent;
 import de.nimarion.osv.protocol.omega.event.EnterRaceEvent;
 import de.nimarion.osv.protocol.omega.event.ResultEvent;
@@ -27,6 +28,10 @@ public class OmegaClient extends TCPClient {
 
     public OmegaClient(String host, int port) {
         super(host, port);
+    }
+
+    public OmegaClient(ProtocolConfiguration protocolConfiguration) {
+        super(protocolConfiguration);
     }
 
     @Override
