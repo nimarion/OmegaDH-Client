@@ -1,6 +1,6 @@
 # OmegaDH-Client
 
-TCP Client for processing data from the Omega ScanOVision Photofinish software and converting it to a comprehensible json object for distributing. Currently only prints the data to the console. Should distribute the data to other consumers in the future for ex. esp32 for a selfmade scoreboard. Maybe send to mqtt broker. 
+Client for reading data from the Omega ScanOVision Photofinish software and Sirocco anemometer for further processing.
 
 Example output for the gemini protocol:
 ```json
@@ -22,8 +22,9 @@ Example output for the gemini protocol:
 
 Currently implemented Protocols:
 
-- [x] Gemini
-- [x] Gemini Wind
-- [x] Omega
-- [x] Frontcamera
+- [x] Gemini (TCP)
+- [x] Gemini Wind (TCP)
+- [x] Omega (TCP)
+- [x] Frontcamera (TCP)
+- [x] Sirocco (Serial) 
 
