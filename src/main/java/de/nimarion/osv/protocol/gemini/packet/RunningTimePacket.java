@@ -38,7 +38,8 @@ public class RunningTimePacket extends GeminiPacket {
     @Override
     public Event handleData(String data) {
         int startIndex = data.lastIndexOf('\u0002');
-        String time = data.substring(startIndex, startIndex + 12).trim();
+        int lastIndex = data.lastIndexOf('\u0004');
+        String time = data.substring(startIndex, lastIndex).trim();
         return new RunningTimeEvent(time);
     }
 }

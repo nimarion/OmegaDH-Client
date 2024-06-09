@@ -1,5 +1,6 @@
 package de.nimarion.osv.protocol.omega;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +18,7 @@ import de.nimarion.osv.protocol.omega.event.ResultThousandsEvent;
 import de.nimarion.osv.protocol.omega.event.StartRankingEvent;
 import de.nimarion.osv.protocol.omega.event.SupplementaryInfoDataEvent;
 import de.nimarion.osv.protocol.omega.event.SupplementaryInfoHeaderEvent;
+import de.nimarion.osv.protocol.omega.event.SupplementaryInfoResultEvent;
 
 public class OmegaClient extends TCPClient {
 
@@ -25,6 +27,8 @@ public class OmegaClient extends TCPClient {
     private String currentRaceId = null;
     private boolean rankingStarted = false;
     private Map<Integer, String> bibTimeHundreds = new HashMap<>();
+    private List<SupplementaryInfoResult> supplementaryInfoResults = new ArrayList<>();
+    private SupplementaryInfoHeaderEvent lastSupplementaryInfoHeader;
 
     public OmegaClient(String host, int port) {
         super(host, port);
@@ -44,10 +48,17 @@ public class OmegaClient extends TCPClient {
             currentRaceId = null;
             bibTimeHundreds.clear();
             rankingStarted = false;
+            SupplementaryInfoResultEvent supplementaryInfoResultEvent = new SupplementaryInfoResultEvent(
+                    supplementaryInfoResults);
+            super.handleEvent(supplementaryInfoResultEvent);
+            supplementaryInfoResults.clear();
+            return;
         }
         if (event instanceof StartRankingEvent) {
             rankingStarted = true;
+            supplementaryInfoResults.clear();
         }
+
         if (!(event instanceof ResultHundredsEvent) && !(event instanceof ResultThousandsEvent)
                 && !(event instanceof SupplementaryInfoDataEvent) && !(event instanceof SupplementaryInfoHeaderEvent)) {
             super.handleEvent(event);
@@ -55,6 +66,40 @@ public class OmegaClient extends TCPClient {
         }
         if (currentRaceId == null || !rankingStarted) {
             super.handleEvent(event);
+            return;
+        }
+
+        if (event instanceof SupplementaryInfoHeaderEvent) {
+            lastSupplementaryInfoHeader = (SupplementaryInfoHeaderEvent) event;
+            return;
+        } else if (event instanceof SupplementaryInfoDataEvent) {
+            SupplementaryInfoDataEvent supplementaryInfoDataEvent = (SupplementaryInfoDataEvent) event;
+            int lastIndex = 0;
+            for (int i = 0; i < lastSupplementaryInfoHeader.getFields().size(); i++) {
+                String field = lastSupplementaryInfoHeader.getFields().get(i);
+                int length = lastSupplementaryInfoHeader.getLengths().get(i);
+                String value = supplementaryInfoDataEvent.getDataString().substring(lastIndex, lastIndex + length - 1)
+                        .trim();
+                lastIndex += length;
+                supplementaryInfoDataEvent.addData(field, value);
+            }
+            super.handleEvent(supplementaryInfoDataEvent);
+            String[] requiredFields = new String[] { "TIME", "RANK", "NATI", "LNAM", "LANE", "FNAM", "BIBN" };
+            for (String requiredField : requiredFields) {
+                if (!supplementaryInfoDataEvent.getDataMap().containsKey(requiredField)) {
+                    return;
+                }
+            }
+            SupplementaryInfoResult supplementaryInfoResult = new SupplementaryInfoResult(
+                    supplementaryInfoDataEvent.getDataMap().get("TIME"),
+                    supplementaryInfoDataEvent.getDataMap().get("RANK"),
+                    supplementaryInfoDataEvent.getDataMap().get("LANE"),
+                    supplementaryInfoDataEvent.getDataMap().get("BIBN"),
+                    supplementaryInfoDataEvent.getDataMap().get("LNAM"),
+                    supplementaryInfoDataEvent.getDataMap().get("FNAM"),
+                    supplementaryInfoDataEvent.getDataMap().get("NATI"));
+            supplementaryInfoResults.add(supplementaryInfoResult);
+
             return;
         }
 

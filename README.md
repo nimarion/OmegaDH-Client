@@ -1,6 +1,6 @@
 # OmegaDH-Client
 
-Client for reading data from the Omega ScanOVision Photofinish software and Sirocco anemometer for further processing.
+Client for reading data from the Omega ScanOVision Photofinish software, Sirocco anemometer and Omega LapCounter for further processing.
 
 Example output for the gemini protocol:
 ```json
@@ -27,4 +27,5 @@ Currently implemented Protocols:
 - [x] Omega (TCP)
 - [x] Frontcamera (TCP)
 - [x] Sirocco (Serial) 
+- [x] LapCounter (Serial) 
 
