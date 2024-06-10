@@ -74,7 +74,7 @@ public abstract class Client extends Thread {
                     byte[] bytes = baos.toByteArray();
                     Packet packet = getPacket(bytes);
                     if (packet != null) {
-                        handleData(packet, bytes);
+                        handleData(packet, new String(bytes, "cp1252").getBytes());
                     } else {
                         System.out.println("Unknown packet: " + StringUtils.toAscii(new String(bytes))
                                 + " -> " + new String(bytes));
