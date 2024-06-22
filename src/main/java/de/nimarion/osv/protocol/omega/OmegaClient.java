@@ -87,6 +87,7 @@ public class OmegaClient extends TCPClient {
             String[] requiredFields = new String[] { "TIME", "RANK", "NATI", "LNAM", "LANE", "FNAM", "BIBN" };
             for (String requiredField : requiredFields) {
                 if (!supplementaryInfoDataEvent.getDataMap().containsKey(requiredField)) {
+                    System.err.println("SupplementaryInfoDataEvent is missing required field: " + requiredField);
                     return;
                 }
             }
