@@ -36,7 +36,7 @@ public class Startlist {
             if (!arrays[0].isEmpty()) {
                 break;
             }
-            StartlistMember member = new StartlistMember(arrays[6], arrays[6], Integer.parseInt(arrays[3]),
+            StartlistMember member = new StartlistMember(arrays[6], arrays[5], Integer.parseInt(arrays[3]),
                     Integer.parseInt(arrays[4]), arrays[7]);
 
             startlistEvent.addMember(member);
