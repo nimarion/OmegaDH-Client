@@ -6,8 +6,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.gson.Gson;
-
 import de.nimarion.osv.protocol.Event;
 import de.nimarion.osv.protocol.Packet;
 import de.nimarion.osv.utils.StringUtils;

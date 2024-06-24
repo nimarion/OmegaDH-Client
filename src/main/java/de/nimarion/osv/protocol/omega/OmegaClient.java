@@ -12,13 +12,14 @@ import de.nimarion.osv.protocol.Packet;
 import de.nimarion.osv.protocol.ProtocolConfiguration;
 import de.nimarion.osv.protocol.omega.event.EndRankingEvent;
 import de.nimarion.osv.protocol.omega.event.EnterRaceEvent;
+import de.nimarion.osv.protocol.omega.event.FullResultsEvent;
+import de.nimarion.osv.protocol.omega.event.ReactionTimeEvent;
 import de.nimarion.osv.protocol.omega.event.ResultEvent;
 import de.nimarion.osv.protocol.omega.event.ResultHundredsEvent;
 import de.nimarion.osv.protocol.omega.event.ResultThousandsEvent;
 import de.nimarion.osv.protocol.omega.event.StartRankingEvent;
 import de.nimarion.osv.protocol.omega.event.SupplementaryInfoDataEvent;
 import de.nimarion.osv.protocol.omega.event.SupplementaryInfoHeaderEvent;
-import de.nimarion.osv.protocol.omega.event.SupplementaryInfoResultEvent;
 
 public class OmegaClient extends TCPClient {
 
@@ -27,8 +28,9 @@ public class OmegaClient extends TCPClient {
     private String currentRaceId = null;
     private boolean rankingStarted = false;
     private Map<Integer, String> bibTimeHundreds = new HashMap<>();
-    private List<SupplementaryInfoResult> supplementaryInfoResults = new ArrayList<>();
     private SupplementaryInfoHeaderEvent lastSupplementaryInfoHeader;
+    private List<ResultEvent> results = new ArrayList<>();
+    private List<ReactionTimeEvent> reactionTimes = new ArrayList<>();
 
     public OmegaClient(String host, int port) {
         super(host, port);
@@ -40,6 +42,7 @@ public class OmegaClient extends TCPClient {
 
     @Override
     public void handleEvent(Event event) {
+        System.out.println(event.getType());
         if (event instanceof EnterRaceEvent) {
             EnterRaceEvent enterRaceEvent = (EnterRaceEvent) event;
             currentRaceId = enterRaceEvent.getRaceId();
@@ -48,15 +51,22 @@ public class OmegaClient extends TCPClient {
             currentRaceId = null;
             bibTimeHundreds.clear();
             rankingStarted = false;
-            SupplementaryInfoResultEvent supplementaryInfoResultEvent = new SupplementaryInfoResultEvent(
-                    supplementaryInfoResults);
-            super.handleEvent(supplementaryInfoResultEvent);
-            supplementaryInfoResults.clear();
+            FullResultsEvent fullResultsEvent = new FullResultsEvent(results,reactionTimes);
+            super.handleEvent(fullResultsEvent);
+            results.clear();
+            reactionTimes.clear();
             return;
         }
         if (event instanceof StartRankingEvent) {
             rankingStarted = true;
-            supplementaryInfoResults.clear();
+            results.clear();
+            reactionTimes.clear();
+        }
+        if (event instanceof ResultEvent) {
+            results.add((ResultEvent) event);
+        }
+        if(event instanceof ReactionTimeEvent){
+            reactionTimes.add((ReactionTimeEvent) event);
         }
 
         if (!(event instanceof ResultHundredsEvent) && !(event instanceof ResultThousandsEvent)
@@ -84,25 +94,10 @@ public class OmegaClient extends TCPClient {
                 supplementaryInfoDataEvent.addData(field, value);
             }
             super.handleEvent(supplementaryInfoDataEvent);
-            String[] requiredFields = new String[] { "TIME", "RANK", "NATI", "LNAM", "LANE", "FNAM", "BIBN" };
-            for (String requiredField : requiredFields) {
-                if (!supplementaryInfoDataEvent.getDataMap().containsKey(requiredField)) {
-                    System.err.println("SupplementaryInfoDataEvent is missing required field: " + requiredField);
-                    return;
-                }
-            }
-            SupplementaryInfoResult supplementaryInfoResult = new SupplementaryInfoResult(
-                    supplementaryInfoDataEvent.getDataMap().get("TIME"),
-                    supplementaryInfoDataEvent.getDataMap().get("RANK"),
-                    supplementaryInfoDataEvent.getDataMap().get("LANE"),
-                    supplementaryInfoDataEvent.getDataMap().get("BIBN"),
-                    supplementaryInfoDataEvent.getDataMap().get("LNAM"),
-                    supplementaryInfoDataEvent.getDataMap().get("FNAM"),
-                    supplementaryInfoDataEvent.getDataMap().get("NATI"));
-            supplementaryInfoResults.add(supplementaryInfoResult);
-
             return;
         }
+
+      
 
         // Results
         if (event instanceof ResultHundredsEvent) {
@@ -110,6 +105,7 @@ public class OmegaClient extends TCPClient {
             if (shortcuts.contains(resultHundredsEvent.getTime())) {
                 ResultEvent resultEvent = new ResultEvent(resultHundredsEvent.getRank(), resultHundredsEvent.getBib(),
                         resultHundredsEvent.getLane(), resultHundredsEvent.getTime(), null);
+                handleEvent(resultEvent);
                 super.handleEvent(resultEvent);
                 return;
             }
@@ -124,11 +120,11 @@ public class OmegaClient extends TCPClient {
                         + resultThousandsEvent.getTime();
                 ResultEvent resultEvent = new ResultEvent(resultThousandsEvent.getRank(), resultThousandsEvent.getBib(),
                         resultThousandsEvent.getLane(), hundreds, thousands);
+                handleEvent(resultEvent);
                 super.handleEvent(resultEvent);
             }
             return;
         }
-
     }
 
     @Override
