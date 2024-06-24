@@ -48,13 +48,13 @@ public class OmegaClient extends TCPClient {
             currentRaceId = enterRaceEvent.getRaceId();
         }
         if (event instanceof EndRankingEvent) {
-            currentRaceId = null;
             bibTimeHundreds.clear();
             rankingStarted = false;
             FullResultsEvent fullResultsEvent = new FullResultsEvent(currentRaceId, results,reactionTimes);
             super.handleEvent(fullResultsEvent);
             results.clear();
             reactionTimes.clear();
+            currentRaceId = null;
             return;
         }
         if (event instanceof StartRankingEvent) {

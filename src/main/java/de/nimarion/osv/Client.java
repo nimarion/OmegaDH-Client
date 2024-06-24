@@ -21,7 +21,6 @@ public abstract class Client extends Thread {
     }
 
     public void handleEvent(Event event) {
-        //System.out.println(new Gson().toJson(event));
         for (EventHandler eventHandler : eventHandlers) {
             eventHandler.handleEvent(event);
         }

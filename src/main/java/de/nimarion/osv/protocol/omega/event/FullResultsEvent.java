@@ -6,7 +6,7 @@ import de.nimarion.osv.protocol.omega.OmegaEvent;
 
 public class FullResultsEvent extends OmegaEvent{
 
-    private String raceId;
+    private final String raceId;
     private final List<ResultEvent> results;
     private final List<ReactionTimeEvent> reactionTimes;
 
