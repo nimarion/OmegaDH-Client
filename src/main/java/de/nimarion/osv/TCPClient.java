@@ -2,6 +2,7 @@ package de.nimarion.osv;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Constructor;
 import java.net.Socket;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -26,6 +27,9 @@ public abstract class TCPClient extends Client {
                 .getSubTypesOf(Packet.class);
         for (Class<? extends Packet> packetClass : packets) {
             try {
+                if (!hasParameterlessPublicConstructor(packetClass)) {
+                    continue;
+                }
                 final Packet packet = packetClass.getDeclaredConstructor().newInstance();
                 registerPacket(packet);
                 System.out.println("Registered " + packet.getClass().getSimpleName() + " Packet");
@@ -34,6 +38,15 @@ public abstract class TCPClient extends Client {
                 exception.printStackTrace();
             }
         }
+    }
+
+    private boolean hasParameterlessPublicConstructor(Class<?> clazz) {
+        for (Constructor<?> constructor : clazz.getConstructors()) {
+            if (constructor.getParameterCount() == 0) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public TCPClient(ProtocolConfiguration protocolConfiguration) {
