@@ -49,4 +49,22 @@ public class Startlist {
         return startTime;
     }
 
+    public Competitor getCompetitorByBib(int bib) {
+        for (Competitor member : members) {
+            if (member.getBib() == bib) {
+                return member;
+            }
+        }
+        return null;
+    }
+
+    public Competitor getCompetitorByLane(int lane) {
+        for (Competitor member : members) {
+            if (member.getLane() == lane) {
+                return member;
+            }
+        }
+        return null;
+    }
+
 }

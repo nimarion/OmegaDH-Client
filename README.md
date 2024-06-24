@@ -28,4 +28,4 @@ Currently implemented Protocols:
 - [x] Frontcamera (TCP)
 - [x] Sirocco (Serial) 
 - [x] LapCounter (Serial) 
-
+- [x] Startliste File Parser (CSV)
