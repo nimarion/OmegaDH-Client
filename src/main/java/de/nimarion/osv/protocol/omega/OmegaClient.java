@@ -51,7 +51,7 @@ public class OmegaClient extends TCPClient {
             currentRaceId = null;
             bibTimeHundreds.clear();
             rankingStarted = false;
-            FullResultsEvent fullResultsEvent = new FullResultsEvent(results,reactionTimes);
+            FullResultsEvent fullResultsEvent = new FullResultsEvent(currentRaceId, results,reactionTimes);
             super.handleEvent(fullResultsEvent);
             results.clear();
             reactionTimes.clear();
