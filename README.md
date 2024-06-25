@@ -29,3 +29,4 @@ Currently implemented Protocols:
 - [x] Sirocco (Serial) 
 - [x] LapCounter (Serial) 
 - [x] Startliste File Parser (CSV)
+- [ ] ASC2 (Serial)

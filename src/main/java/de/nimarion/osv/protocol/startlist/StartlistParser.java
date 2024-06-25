@@ -70,7 +70,7 @@ public class StartlistParser {
         return startlistEvent;
     }
 
-    private String[] getAllEventCodes() {
+    public String[] getAllEventCodes() {
         List<String> events = new ArrayList<>();
         for (String[] arrays : csvData) {
             if (!arrays[0].isEmpty()) {
@@ -91,6 +91,10 @@ public class StartlistParser {
             }
         }
         return null;
+    }
+
+    public List<String[]> getCsvData() {
+        return csvData;
     }
 
 }
