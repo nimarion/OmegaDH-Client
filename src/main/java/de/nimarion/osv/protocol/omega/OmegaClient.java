@@ -42,7 +42,6 @@ public class OmegaClient extends TCPClient {
 
     @Override
     public void handleEvent(Event event) {
-        System.out.println(event.getType());
         if (event instanceof EnterRaceEvent) {
             EnterRaceEvent enterRaceEvent = (EnterRaceEvent) event;
             currentRaceId = enterRaceEvent.getRaceId();

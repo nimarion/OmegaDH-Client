@@ -32,7 +32,6 @@ public abstract class TCPClient extends Client {
                 }
                 final Packet packet = packetClass.getDeclaredConstructor().newInstance();
                 registerPacket(packet);
-                System.out.println("Registered " + packet.getClass().getSimpleName() + " Packet");
             } catch (Exception exception) {
                 System.out.println("Failed to register " + packetClass.getSimpleName() + " Packet");
                 exception.printStackTrace();
