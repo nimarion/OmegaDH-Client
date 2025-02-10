@@ -1,0 +1,156 @@
+; FinishLynxDH-Scoreboard
+
+;;TimeArmed
+;Initialize register 7 to 0 when an event is armed.
+\11\00\X0\=7
+;\11\01\0dRunning time: %12.12s\0d\0a
+\01\01TR\02%12.12s\04
+
+;;TimeRunning
+\01\01TR\02%12.12s\04
+;Scan the last character of the wind to register 6.
+\13\03%s\R0\L1\X0\=6\U1\S6\R0\B0  
+;Next line will:
+;Halt if register 7 is not 0.
+;Halt if register 6 is 69 (Hex value of I - NWI)
+;If register 6 is not 69, send the wind and set register 7 to 1 
+\13\03\Hn7\X\69\He6\01WL\02%s\04\=7
+
+;;TimeStopped
+; This is sent when the time is stopped by a beam break.
+; Line codes are identical to the TimeRunning line codes.
+\01\01TS\02%12.12s\04
+;Scan the last character of the wind to register 6.
+\13\03%s\R0\L1\X0\=6\U1\S6\R0\B0  
+;Next line will:
+;Halt if register 7 is not 0.
+;Halt if register 6 is 69 (Hex value of I - NWI)
+;If register 6 is not 69, send the wind and set register 7 to 1 
+\13\03\Hn7\X\69\He6\01WL\02%s\04\=7
+
+
+;;TimeBreak
+; This is sent when a beam break is recieved.
+; Line codes are identical to the TimeRunning line codes.
+\01\01TB\02%12.12s\04
+
+
+;;Wind
+; This is sent in the time stream when a wind reading is received.
+; Line codes:
+;  \00  No variable
+;  \01  Formatted wind (same format as ResultsHeader wind)
+;  \02  Binary wind in hundredths of units (as a 4 byte little endian integer)
+;\01\01V%12.12s\04
+\01\01WL\02%s\04
+
+
+;;ResultsHeader
+; This is sent once each time the scoreboard is updated with results. It
+; is sent before any result lines are sent.
+; Line codes:
+;  \00  No variable
+;  \01  OFFICIAL/UNOFFICIAL string
+;  \02  Event name
+;  \03  Wind
+;  \04  Event number
+;  \05  Round number
+;  \06  Heat number
+;  \07  AUTO/MANUAL start type
+;  \08  Number of participants
+;\00*** Results Header ***\0d\0a
+;\01\01LH%1.1s
+;\02Event name         : %s\0d\0a
+;\03W:%s\0d\0a
+;\04Event number       : %s\0d\0a
+;\05Round number       : %s\0d\0a
+;\06Heat number        : %s\0d\0a
+;\07AUTO/MANUAL start  : %s\0d\0a
+;\08N%2.2s
+;\00Plc Ln  Id  Name                 Affiliation          Time         Delta Time  \0d\0a
+;\00--- --- --- -------------------- -------------------- ------------ ------------\0d\0a
+\00\01LH\02
+\01%s|
+\02%s|
+\03%s|
+\04%s|
+\05%s|
+\06%s|
+\07%s|
+\08%s
+\00\04
+
+
+;;ResultsTrailer
+; This is sent once each time the scoreboard is updated with results. It
+; is sent after all result lines are sent.
+; Line codes are identical to the ResultsHeader line codes.
+;\00*** Results Trailer ***\0d\0a\0d\0a
+\00\01LE\04
+
+;;Result
+; This is sent once for each result line displayed on the scoreboard.
+; Line codes:
+;  \00  No variable
+;  \01  Place
+;  \02  Lane
+;  \03  Id
+;  \04  Name
+;  \05  Affiliation
+;  \06  Time
+;  \07  Delta Time
+;  \08  Cumulative Split Time
+;  \09  Last Split Time
+;  \0a  Laps To Go
+;  \0b  License
+;  \0c  ReacTime
+;  \0d  Speed
+;  \0e  Pace
+;  \0f  Best Split Time
+; Register[0] is initialized with the index of the current result line and
+; will range from 0 through PageSize - 1.
+\00\01LR\02
+\01%s|
+\02%s|
+\03%s| 
+\04%s|
+\05%s|
+\06%s|
+\07%s|
+\08%s|
+\09%s|
+\0a%s|
+\0b%s|
+\0c%s|
+\0d%s|
+\0e%s|
+\0f%s|
+\10%s
+\00\04
+
+
+;;StartListHeader
+; This is sent once each time the scoreboard is updated with results. It
+; is sent before any result lines are sent.
+; Line codes:
+;  \00  No variable
+;  \01  OFFICIAL/UNOFFICIAL string
+;  \02  Event name
+;  \03  Wind
+;  \04  Event number
+;  \05  Round number
+;  \06  Heat number
+;  \07  AUTO/MANUAL start type
+;  \08  Number of participants
+;
+; The following line (if not commented) will tell ResulTV to change layouts.
+\00\01SH\02
+\01%s|
+\02%s|
+\03%s|
+\04%s|
+\05%s|
+\06%s|
+\07%s|
+\08%s
+\00\04
