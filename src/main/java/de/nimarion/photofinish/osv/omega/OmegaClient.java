@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import de.nimarion.photofinish.TCPClient;
+import de.nimarion.photofinish.common.ResultEvent;
 import de.nimarion.photofinish.osv.Event;
 import de.nimarion.photofinish.osv.Packet;
 import de.nimarion.photofinish.osv.ProtocolConfiguration;
@@ -14,7 +15,6 @@ import de.nimarion.photofinish.osv.omega.event.EndRankingEvent;
 import de.nimarion.photofinish.osv.omega.event.EnterRaceEvent;
 import de.nimarion.photofinish.osv.omega.event.FullResultsEvent;
 import de.nimarion.photofinish.osv.omega.event.ReactionTimeEvent;
-import de.nimarion.photofinish.osv.omega.event.ResultEvent;
 import de.nimarion.photofinish.osv.omega.event.ResultHundredsEvent;
 import de.nimarion.photofinish.osv.omega.event.ResultThousandsEvent;
 import de.nimarion.photofinish.osv.omega.event.StartRankingEvent;
@@ -96,14 +96,13 @@ public class OmegaClient extends TCPClient {
             return;
         }
 
-      
-
         // Results
         if (event instanceof ResultHundredsEvent) {
             ResultHundredsEvent resultHundredsEvent = (ResultHundredsEvent) event;
             if (shortcuts.contains(resultHundredsEvent.getTime())) {
-                ResultEvent resultEvent = new ResultEvent(resultHundredsEvent.getRank(), resultHundredsEvent.getBib(),
-                        resultHundredsEvent.getLane(), resultHundredsEvent.getTime(), null);
+                ResultEvent resultEvent = new ResultEvent(resultHundredsEvent.getRank(), resultHundredsEvent.getLane(),
+                        resultHundredsEvent.getBib(),
+                        resultHundredsEvent.getTime(), null, null);
                 handleEvent(resultEvent);
                 super.handleEvent(resultEvent);
                 return;
@@ -111,14 +110,16 @@ public class OmegaClient extends TCPClient {
             bibTimeHundreds.put(resultHundredsEvent.getBib(), resultHundredsEvent.getTime());
             return;
         }
+        // TODO: Integrate Reaction Time
         if (event instanceof ResultThousandsEvent) {
             ResultThousandsEvent resultThousandsEvent = (ResultThousandsEvent) event;
             if (bibTimeHundreds.containsKey(resultThousandsEvent.getBib())) {
                 String hundreds = bibTimeHundreds.get(resultThousandsEvent.getBib());
                 String thousands = hundreds.substring(0, hundreds.lastIndexOf(".") + 1)
                         + resultThousandsEvent.getTime();
-                ResultEvent resultEvent = new ResultEvent(resultThousandsEvent.getRank(), resultThousandsEvent.getBib(),
-                        resultThousandsEvent.getLane(), hundreds, thousands);
+                ResultEvent resultEvent = new ResultEvent(resultThousandsEvent.getRank(),
+                        resultThousandsEvent.getLane(), resultThousandsEvent.getBib(), hundreds, thousands,
+                        null);
                 handleEvent(resultEvent);
                 super.handleEvent(resultEvent);
             }

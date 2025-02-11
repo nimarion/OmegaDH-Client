@@ -2,6 +2,7 @@ package de.nimarion.photofinish.osv.omega.event;
 
 import java.util.List;
 
+import de.nimarion.photofinish.common.ResultEvent;
 import de.nimarion.photofinish.osv.omega.OmegaEvent;
 
 public class FullResultsEvent extends OmegaEvent{

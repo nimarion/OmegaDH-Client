@@ -28,7 +28,7 @@ public class ResultThousandsPacket extends OmegaPacket {
         int bib = Integer.parseInt(new String(Arrays.copyOfRange(data, 3, 8)).trim());
         int lane = Integer.parseInt(new String(Arrays.copyOfRange(data, 8, 10)).trim());
         String time = new String(Arrays.copyOfRange(data, 10, data.length))
-                .split("\\.")[1];
+                .split("\\.")[1].trim();
 
         return new ResultThousandsEvent(rank, bib, lane, time);
     }
