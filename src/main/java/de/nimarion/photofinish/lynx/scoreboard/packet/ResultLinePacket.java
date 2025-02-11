@@ -3,7 +3,7 @@ package de.nimarion.photofinish.lynx.scoreboard.packet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import de.nimarion.photofinish.common.ResultEvent;
+import de.nimarion.photofinish.common.result.ResultEvent;
 import de.nimarion.photofinish.lynx.scoreboard.FinishLynxPacket;
 import de.nimarion.photofinish.osv.Event;
 
@@ -44,6 +44,10 @@ public class ResultLinePacket extends FinishLynxPacket {
         if (matcher.matches()) {
             timeThousands = time;
             // TODO: Round "time" up to the next hundredth
+        }
+        if(place == null){
+            System.out.println("Place is null! Did you turn on 'Send placing' in the Lynx software?");
+            place = -1;
         }
         String reactionTime = getOrDefault(splitData, 11, "");
         return new ResultEvent(place, lane, id, time, timeThousands, reactionTime);

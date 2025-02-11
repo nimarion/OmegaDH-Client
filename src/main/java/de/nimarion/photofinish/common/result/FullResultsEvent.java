@@ -1,17 +1,16 @@
-package de.nimarion.photofinish.osv.omega.event;
+package de.nimarion.photofinish.common.result;
 
 import java.util.List;
 
-import de.nimarion.photofinish.common.result.ResultEvent;
-import de.nimarion.photofinish.osv.omega.OmegaEvent;
+import de.nimarion.photofinish.osv.Event;
 
-public class FullResultsEvent extends OmegaEvent{
+public class FullResultsEvent extends Event{
 
     private final String raceId;
     private final List<ResultEvent> results;
 
     public FullResultsEvent(String raceId, List<ResultEvent> results) {
-        super("FULL_RESULT");
+        super("FULL_RESULTS");
         this.raceId = raceId;
         this.results = results;
     }

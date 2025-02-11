@@ -40,6 +40,12 @@ public class ReactionTimePacket extends OmegaPacket {
         int lane = Integer.parseInt(new String(Arrays.copyOfRange(data, 5, 7)).trim());
         String reactionTime = new String(Arrays.copyOfRange(data, 12, 18)).trim();
         String reactionFlag = new String(Arrays.copyOfRange(data, 18, 19)).trim();
+        if(reactionTime.isEmpty()) {
+            reactionTime = null;
+        }
+        if(reactionFlag.isEmpty()) {
+            reactionFlag = null;
+        }
         return new ReactionTimeEvent(bib, lane, reactionTime, reactionFlag);
     }
 

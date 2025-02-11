@@ -1,4 +1,4 @@
-package de.nimarion.photofinish.common;
+package de.nimarion.photofinish.common.result;
 
 import de.nimarion.photofinish.osv.Event;
 
