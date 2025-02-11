@@ -1,44 +1,24 @@
-package de.nimarion.photofinish.lynx.startlist;
+package de.nimarion.photofinish.common.startlist;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Startlist {
 
-    private final int eventNumber;
-    private final int roundNumber;
-    private final int heatNumber;
+    private final String id;
     private final int distance;
     private final String title;
-    private final String date;
-    private final String startTime;
     private final List<Competitor> members;
 
-    public Startlist(int eventNumber, int roundNumber, int heatNumber, int distance, String title, String date, String startTime) {
-        this.eventNumber = eventNumber;
-        this.roundNumber = roundNumber;
-        this.heatNumber = heatNumber;
+    public Startlist(String id,int distance, String title) {
+        this.id = id;
         this.distance = distance;
         this.title = title;
         this.members = new ArrayList<>();
-        this.startTime = startTime;
-        this.date = date;
     }
 
-    public void addCompetitor(Competitor member) {
-        members.add(member);
-    }
-
-    public int getEventNumber() {
-        return eventNumber;
-    }
-
-    public int getRoundNumber() {
-        return roundNumber;
-    }
-
-    public int getHeatNumber() {
-        return heatNumber;
+    public String getId() {
+        return id;
     }
 
     public int getDistance() {
@@ -53,12 +33,8 @@ public class Startlist {
         return members;
     }
 
-    public String getDate() {
-        return date;
-    }
-
-    public String getStartTime() {
-        return startTime;
+    public void addCompetitor(Competitor member) {
+        members.add(member);
     }
 
     public Competitor getCompetitorByBib(int bib) {
@@ -78,5 +54,5 @@ public class Startlist {
         }
         return null;
     }
-
+    
 }

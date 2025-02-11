@@ -1,4 +1,4 @@
-package de.nimarion.photofinish.lynx.startlist;
+package de.nimarion.photofinish.common.startlist;
 
 public class Competitor {
 

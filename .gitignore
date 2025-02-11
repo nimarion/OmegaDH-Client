@@ -239,4 +239,6 @@ buildNumber.properties
 # Ignore all local history of files
 .history
 
+Main.java
+
 # End of https://www.toptal.com/developers/gitignore/api/git,java,maven,dotenv,eclipse,intellij,code-java,visualstudiocode
