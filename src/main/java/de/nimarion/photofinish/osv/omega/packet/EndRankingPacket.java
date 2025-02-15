@@ -1,8 +1,8 @@
 package de.nimarion.photofinish.osv.omega.packet;
 
+import de.nimarion.photofinish.common.result.ResultEndEvent;
 import de.nimarion.photofinish.osv.Event;
 import de.nimarion.photofinish.osv.omega.OmegaPacket;
-import de.nimarion.photofinish.osv.omega.event.EndRankingEvent;
 
 /**
  * Name: [EndRanking]
@@ -17,7 +17,7 @@ public class EndRankingPacket extends OmegaPacket {
 
     @Override
     public Event handleData(String data) {
-        return new EndRankingEvent();
+        return new ResultEndEvent();
     }
 
 }

@@ -17,6 +17,7 @@ import com.opencsv.exceptions.CsvException;
 import de.nimarion.photofinish.common.startlist.Competitor;
 import de.nimarion.photofinish.common.startlist.Startlist;
 import de.nimarion.photofinish.common.startlist.StartlistParser;
+import de.nimarion.photofinish.lynx.scoreboard.FinishLynxClient;
 
 public class LynxStartlistParser extends StartlistParser {
 
@@ -26,8 +27,8 @@ public class LynxStartlistParser extends StartlistParser {
         super(path);
     }
 
-    private LynxStartlist forEventCode(int eventNumber, int roundNumber, int heatNumber) {
-        LynxStartlist startlistEvent = null;
+    private Startlist forEventCode(int eventNumber, int roundNumber, int heatNumber) {
+        Startlist startlistEvent = null;
         for (String[] arrays : csvData) {
 
             if (!arrays[0].isEmpty()) {
@@ -35,7 +36,8 @@ public class LynxStartlistParser extends StartlistParser {
                         && Integer.parseInt(arrays[2]) == heatNumber) {
                     int distance = Integer.parseInt(arrays[9]);
                     String eventName = arrays[3];
-                    startlistEvent = new LynxStartlist(eventNumber, roundNumber, heatNumber, distance, eventName);
+                    startlistEvent = new Startlist(eventNumber + "-" + roundNumber + "-" + heatNumber, distance,
+                            eventName);
                     continue;
                 }
                 continue;
@@ -71,13 +73,11 @@ public class LynxStartlistParser extends StartlistParser {
                 .collect(Collectors.toList());
     }
 
-    public LynxStartlist getStartlist(int eventNumber, int roundNumber, int heatNumber) {
+    public Startlist getStartlist(int eventNumber, int roundNumber, int heatNumber) {
         return getStartlists().stream()
-                .filter(s -> s instanceof LynxStartlist)
-                .map(s -> (LynxStartlist) s)
-                .filter(s -> s.getEventNumber() == eventNumber &&
-                        s.getRoundNumber() == roundNumber &&
-                        s.getHeatNumber() == heatNumber)
+                .filter(s -> FinishLynxClient.getEventNumberFromId(s.getId()) == eventNumber &&
+                        FinishLynxClient.getRoundNumberFromId(s.getId()) == roundNumber &&
+                        FinishLynxClient.getHeatNumberFromId(s.getId()) == heatNumber)
                 .findFirst()
                 .orElse(null);
     }

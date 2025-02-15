@@ -6,13 +6,13 @@ import java.util.List;
 import java.util.Map;
 
 import de.nimarion.photofinish.TCPClient;
+import de.nimarion.photofinish.common.result.FullResultsEvent;
+import de.nimarion.photofinish.common.result.ResultEndEvent;
 import de.nimarion.photofinish.common.result.ResultEvent;
 import de.nimarion.photofinish.osv.Event;
 import de.nimarion.photofinish.osv.Packet;
 import de.nimarion.photofinish.osv.ProtocolConfiguration;
-import de.nimarion.photofinish.osv.omega.event.EndRankingEvent;
 import de.nimarion.photofinish.osv.omega.event.EnterRaceEvent;
-import de.nimarion.photofinish.osv.omega.event.FullResultsEvent;
 import de.nimarion.photofinish.osv.omega.event.ReactionTimeEvent;
 import de.nimarion.photofinish.osv.omega.event.ResultHundredsEvent;
 import de.nimarion.photofinish.osv.omega.event.ResultThousandsEvent;
@@ -43,9 +43,10 @@ public class OmegaClient extends TCPClient {
             EnterRaceEvent enterRaceEvent = (EnterRaceEvent) event;
             currentRaceId = enterRaceEvent.getRaceId();
         }
-        if (event instanceof EndRankingEvent) {
+        if (event instanceof ResultEndEvent) {
             FullResultsEvent fullResultsEvent = new FullResultsEvent(currentRaceId, bibResult.values().stream().toList());
             super.handleEvent(fullResultsEvent);
+            super.handleEvent(event);
             bibResult.clear();
             rankingStarted = false;
             currentRaceId = null;

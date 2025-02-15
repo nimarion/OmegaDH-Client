@@ -1,5 +1,6 @@
 package de.nimarion.photofinish.common.result;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.nimarion.photofinish.osv.Event;
@@ -7,12 +8,14 @@ import de.nimarion.photofinish.osv.Event;
 public class FullResultsEvent extends Event{
 
     private final String raceId;
-    private final List<ResultEvent> results;
+    private List<ResultEvent> results;
 
     public FullResultsEvent(String raceId, List<ResultEvent> results) {
         super("FULL_RESULTS");
         this.raceId = raceId;
-        this.results = results;
+        List<ResultEvent> sortedResults = new ArrayList<ResultEvent>(results);
+        sortedResults.sort((o1, o2) -> o1.getPlace() - o2.getPlace());
+        this.results = sortedResults;
     }
 
     public String getRaceId() {

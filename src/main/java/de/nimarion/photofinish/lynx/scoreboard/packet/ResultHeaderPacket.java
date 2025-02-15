@@ -1,7 +1,7 @@
 package de.nimarion.photofinish.lynx.scoreboard.packet;
 
+import de.nimarion.photofinish.common.result.ResultStartEvent;
 import de.nimarion.photofinish.lynx.scoreboard.FinishLynxPacket;
-import de.nimarion.photofinish.lynx.scoreboard.ResultStartEvent;
 import de.nimarion.photofinish.osv.Event;
 
 public class ResultHeaderPacket extends FinishLynxPacket {
@@ -27,13 +27,13 @@ public class ResultHeaderPacket extends FinishLynxPacket {
         int startIndex = data.indexOf('\u0002');
         int lastIndex = data.lastIndexOf('\u0004');
         String[] splitData = data.substring(startIndex, lastIndex).trim().split("\\|(?!\\s)");
-        String eventName = getOrDefault(splitData, 1, "");
-        String wind = getOrDefault(splitData, 2, "");
+        //String eventName = getOrDefault(splitData, 1, "");
+        //String wind = getOrDefault(splitData, 2, "");
         int eventNumber = getOrDefault(splitData, 3, -1);
         int roundNumber = getOrDefault(splitData, 4, -1);
         int heatNumber =  getOrDefault(splitData, 5, -1);
-        int numberOfParticipants = getOrDefault(splitData, 7, -1);
-        return new ResultStartEvent(eventName, wind, eventNumber, roundNumber, heatNumber, numberOfParticipants);
+        //int numberOfParticipants = getOrDefault(splitData, 7, -1);
+        return new ResultStartEvent(eventNumber + "-" + roundNumber + "-" + heatNumber);
     }
 
     

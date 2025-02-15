@@ -1,7 +1,7 @@
 package de.nimarion.photofinish.lynx.scoreboard.packet;
 
+import de.nimarion.photofinish.common.result.ResultEndEvent;
 import de.nimarion.photofinish.lynx.scoreboard.FinishLynxPacket;
-import de.nimarion.photofinish.lynx.scoreboard.ResultEndEvent;
 import de.nimarion.photofinish.osv.Event;
 
 public class ResultTrailerPacket extends FinishLynxPacket {

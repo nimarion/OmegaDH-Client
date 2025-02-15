@@ -5,7 +5,9 @@ import java.util.List;
 
 import de.nimarion.photofinish.TCPClient;
 import de.nimarion.photofinish.common.result.FullResultsEvent;
+import de.nimarion.photofinish.common.result.ResultEndEvent;
 import de.nimarion.photofinish.common.result.ResultEvent;
+import de.nimarion.photofinish.common.result.ResultStartEvent;
 import de.nimarion.photofinish.osv.Event;
 import de.nimarion.photofinish.osv.Packet;
 import de.nimarion.photofinish.osv.ProtocolConfiguration;
@@ -28,7 +30,7 @@ public class FinishLynxClient extends TCPClient {
         super.handleEvent(event);
         if(event instanceof ResultStartEvent){
             ResultStartEvent resultStartEvent = (ResultStartEvent) event;
-            currentRaceId = resultStartEvent.getEventNumber() + "-" + resultStartEvent.getRoundNumber() + "-" + resultStartEvent.getHeatNumber();
+            currentRaceId = getEventNumberFromId(resultStartEvent.getId()) + "-" + getRoundNumberFromId(resultStartEvent.getId()) + "-" +getHeatNumberFromId(resultStartEvent.getId());
             results.clear();
         }
         if(event instanceof ResultEvent){
@@ -47,6 +49,18 @@ public class FinishLynxClient extends TCPClient {
         if (event != null) {
             handleEvent(event);
         }
+    }
+
+    public static int getEventNumberFromId(String id){
+        return Integer.parseInt(id.split("-")[0]);
+    }
+
+    public static int getRoundNumberFromId(String id){
+        return Integer.parseInt(id.split("-")[1]);
+    }
+
+    public static int getHeatNumberFromId(String id){
+        return Integer.parseInt(id.split("-")[2]);
     }
 
 }
