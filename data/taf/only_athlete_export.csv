@@ -1,0 +1,255 @@
+CompetitorType;Bib;Code;FirstName;LastName;Yob;Gender;RelayNumber;RelayName;TeamNumber;TeamName;Nation;Email;Infix;ClubName;ClubCode;ClubNation;ClubRegion;ClubArea;ClubDistrict
+Athlete;1;0015330;Malaika;Mihambo;1994;W;;;;;GER;;;LG Kurpfalz;;GER;BA;Bezirk Hegau-Bodensee;
+Athlete;2;;Jura;Levy;1990;W;;;;;JAM;;;Jamaica;;JAM;;;
+Athlete;3;0085830;Sina;Mayer;1995;W;;;;;GER;;;LAZ Zweibrücken;;GER;PF;;Bezirk Vorderpfalz
+Athlete;4;0506413;Yasmin;Kwadwo-Bühner;1990;W;;;;;GER;;;LC Paderborn;WE0002618;GER;WE;FLVW Kreis Paderborn;FLVW Bezirk Ostwestfalen
+Athlete;5;;Rosalina;Santos;1998;W;;;;;POR;;;Portugal;;POR;;;
+Athlete;6;;Patrizia;Van Der Weken;1999;W;;;;;LUX;;;Luxembourg;;LUX;;;
+Athlete;7;;Jacqueline;Madogo;2000;W;;;;;CAN;;;Kanada;;CAN;;;
+Athlete;8;;Veronica Shanti;Pereira;1996;W;;;;;SGP;;;Singapur;;SGP;;;
+Athlete;9;;Aziza;Sbaity;1991;W;;;;;LIB;;;Libanon;;LIB;;;
+Athlete;50;;Julia;Niederberger;2000;W;;;;;SUI;;;Schweiz;;SUI;;;
+Athlete;51;;Micha;Powell;1995;W;;;;;CAN;;;Kanada;;CAN;;;
+Athlete;52;;Cátia;Azevedo;1994;W;;;;;POR;;;Portugal;;POR;;;
+Athlete;53;0040393;Alica;Schmidt;1998;W;;;;;GER;;;SCC Berlin;BE0001019;GER;BE;;
+Athlete;54;;Laviai;Nielsen;1996;W;;;;;GBR;;;Großbritannien;;GBR;;;
+Athlete;55;0142960;Corinna;Schwab;1999;W;;;;;GER;;;LAC Erdgas Chemnitz;SN0000003;GER;SN;Chemnitzer Leichtathletik Verband e.V.;Chemnitz
+Athlete;56;0041463;Elisa;Lechleitner;1999;W;;;;;GER;;;LAZ Ludwigsburg;;GER;WÜ;Zollernalb;
+Athlete;57;;Sophie;Becker;1997;W;;;;;IRL;;;Irland;;IRL;;;
+Athlete;58;;Imke;Vervaet;1993;W;;;;;BEL;;;Belgien;;BEL;;;
+Athlete;59;0502462;Djamila;Böhm;1994;W;;;;;GER;;;LC Rehlingen;SL0000082;GER;SL;Saarlouis/Merzig/Wadern;
+Athlete;60;;Ayomide;Folorunso;1996;W;;;;;ITA;;;Italien;;ITA;;;
+Athlete;100;0118114;Lucia;Sturm;2002;W;;;;;GER;;;TSV Moselfeuer Lehmen;;GER;RL;Altenkirchen;
+Athlete;101;;Rachel;Pellaud;1995;W;;;;;SUI;;;Schweiz;;SUI;;;
+Athlete;102;;Bianka;Kéri;1994;W;;;;;HUN;;;Ungarn;;HUN;;;
+Athlete;103;0252213;Christina;Hering;1994;W;;;;;GER;;;LG Stadtwerke München;;GER;BY;Oberbayern Nord;Oberbayern
+Athlete;104;;Wilma;Nielsen;2001;W;;;;;SWE;;;Schweden;;SWE;;;
+Athlete;105;0116791;Majtie;Kolberg;1999;W;;;;;GER;;;LG Kreis Ahrweiler;;GER;RL;Altenkirchen;
+Athlete;106;;Isabelle;Boffey;2000;W;;;;;GBR;;;Großbritannien;;GBR;;;
+Athlete;107;;Gabriela;Gajanová;1999;W;;;;;SVK;;;Slovakei;;SVK;;;
+Athlete;108;;Anna;Wielgosz;1993;W;;;;;POL;;;Polen;;POL;;;
+Athlete;109;;Naomi;Korir;1998;W;;;;;KEN;;;Kenya;;KEN;;;
+Athlete;110;;Vanessa;Scaunet;1996;W;;;;;BEL;;;Belgien;;BEL;;;
+Athlete;112;;Audrey;Werro;2004;W;;;;;SUI;;;Schweiz;;SUI;;;
+Athlete;113;;Eveliina;Määttänen;1995;W;;;;;FIN;;;Finnland;;FIN;;;
+Athlete;114;;Renée;Eykens;1996;W;;;;;BEL;;;Belgien;;BEL;;;
+Athlete;115;;Veronika;Sadek;2003;W;;;;;SLO;;;Slowenien;;SLO;;;
+Athlete;116;;Margarita;Koczanowa;1999;W;;;;;POL;;;Polen;;POL;;;
+Athlete;117;1911106;Nele;Kühn;2004;W;;;;;GER;;;LG Eintracht Frankfurt;;GER;;;
+Athlete;118;;Ellie;Baker;1998;W;;;;;GBR;;;Großbritannien;;GBR;;;
+Athlete;119;;Agata;Kolakowska;1997;W;;;;;POL;;;Polen;;POL;;;
+Athlete;120;;Léna ;Kandissounon;1998;W;;;;;FRA;;;Frankreich;;FRA;;;
+Athlete;121;;Jennie;Hauke;1993;W;;;;;NZL;;;Neuseeland;;NZL;;;
+Athlete;150;0501963;Vera;Hoffmann;1996;W;;;;;LUX;;;LC Rehlingen;SL0000082;GER;SL;Saarlouis/Merzig/Wadern;
+Athlete;151;;Weronika;Lizakowska;1998;W;;;;;POL;;;Polen;;POL;;;
+Athlete;152;;Nele;Weßel;1999;W;;;;;GER;;;Eintracht Frankfurt e.V.;;GER;HE;HLV-Kreis Wetzlar;Mitte
+Athlete;153;0146680;Vera;Coutellier;1995;W;;;;;GER;;;ASV Köln;;GER;NO;;LVN Region Südost
+Athlete;154;;Aleksandra;Plocinska;1999;W;;;;;POL;;;Polen;;POL;;;
+Athlete;155;;Elise;Vanderelst;1998;W;;;;;BEL;;;Belgien;;BEL;;;
+Athlete;156;;Maruša;Mišmaš Zrimšek;1994;W;;;;;SLO;;;Slowenien;;SLO;;;
+Athlete;157;0117133;Olivia;Gürth;2002;W;;;;;GER;;;Diezer TSK Oranien;;GER;RL;Altenkirchen;
+Athlete;158;0043563;Hanna;Klein;1993;W;;;;;GER;;;LAV Stadtwerke Tübingen;;GER;WÜ;Zollernalb;
+Athlete;159;0151447;Fabiane;Meyer;2002;W;;;;;GER;;;TV Westfalia Epe;;GER;WE;FLVW Kreis Steinfurt;FLVW Bezirk Münsterland
+Athlete;160;;Lilly;Nägeli;2003;W;;;;;SUI;;;Schweiz;;SUI;;;
+Athlete;161;;Marta;García;1998;W;;;;;ESP;;;Spanien;;ESP;;;
+Athlete;163;0500746;Selma;Benfares;1999;W;;;;;GER;;;LC Rehlingen;SL0000082;GER;SL;Saarlouis/Merzig/Wadern;
+Athlete;164;;Marta;Pérez;1993;W;;;;;ESP;;;Spanien;;ESP;;;
+Athlete;165;0502728;Shirin;Kerber;2006;W;;;;;SUI;;;LC Rehlingen;SL0000082;GER;SL;Saarlouis/Merzig/Wadern;
+Athlete;200;;Yuliya;Chumachenko;1994;W;;;;;UKR;;;Ukraine;;UKR;;;
+Athlete;201;0502109;Anna-Sophie;Schmitt;2004;W;;;;;GER;;;SV GO! Saar 05;SL0000091;GER;SL;Saarbrücken / Saar-Pfalz;
+Athlete;202;;Airine;Palšyte;1992;W;;;;;LTU;;;Litauen;;LTU;;;
+Athlete;203;0001100;Blessing;Enatoh;2002;W;;;;;GER;;;LG Nord Berlin;;GER;BE;;
+Athlete;204;0033333;Imke;Onnen;1994;W;;;;;GER;;;Hannover 96;;GER;NI;Schaumburg;Hannover
+Athlete;205;0040988;Marie-Laurence;Jungfleisch;1990;W;;;;;GER;;;VFB Stuttgart;;GER;;;
+Athlete;206;0048972;Johanna;Göring;2005;W;;;;;GER;;;SV Salamander Kornwestheim;;GER;WÜ;Zollernalb;
+Athlete;207;0501609;Lea;Halmans;1999;W;;;;;GER;;;SV GO! Saar 05;SL0000091;GER;SL;Saarbrücken / Saar-Pfalz;
+Athlete;208;;Salome;Lang;1997;W;;;;;SUI;;;Schweiz;;SUI;;;
+Athlete;209;0189254;Bianca;Stichling;2000;W;;;;;GER;;;TSV Bayer o4 Leverkusen;NO0030096;GER;NO;;LVN Region Südost
+Athlete;210;0015048;Christina;Honsel;1997;W;;;;;GER;;;TV Wattenscheid 01;;GER;WE;FLVW Kreis Steinfurt;FLVW Bezirk Münsterland
+Athlete;250;;Klaudia;Kardasz;1996;W;;;;;POL;;;Polen;;POL;;;
+Athlete;251;;Jolien;Boumkwo;1993;W;;;;;BEL;;;Belgien;;BEL;;;
+Athlete;252;0149564;Julia;Ritter;1998;W;;;;;GER;;;TV Wattenscheid 01;;GER;WE;FLVW Kreis Steinfurt;FLVW Bezirk Münsterland
+Athlete;253;;Benthe;König;1998;W;;;;;NED;;;Niederlande;;NED;;;
+Athlete;254;0041440;Lea;Riedel;1999;W;;;;;GER;;;VfL Sindelfingen;;GER;WÜ;Zollernalb;
+Athlete;255;0142612;Katharina;Maisch;1997;W;;;;;GER;;;LV 90 Erzgebirge;;GER;SN;KV Mittelsachsen;Chemnitz
+Athlete;256;0024610;Yemisi;Ogunleye;1998;W;;;;;GER;;;MTG Mannheim;BA0000170;GER;BA;Rhein-Neckar-Kreis;
+Athlete;257;;María Belén;Toimil;1994;W;;;;;ESP;;;Spanien;;ESP;;;
+Athlete;258;0503744;Annina;Brandenburg;1998;W;;;;;GER;;;TV Wattenscheid 01;;GER;WE;FLVW Kreis Steinfurt;FLVW Bezirk Münsterland
+Athlete;259;0129331;Lilly;Gerhard;2003;W;;;;;GER;;;LC Rehlingen;SL0000082;GER;SL;Saarlouis/Merzig/Wadern;
+Athlete;300;;Réka;Szilágyi;1996;W;;;;;HUN;;;Ungarn;;HUN;;;
+Athlete;301;;Victoria;Hudson;1996;W;;;;;AUT;;;Österreich;;AUT;;;
+Athlete;302;0110057;Jana Marie;Lowka;2000;W;;;;;GER;;;Eintracht Frankfurt e.V.;;GER;HE;HLV-Kreis Wetzlar;Mitte
+Athlete;304;0015206;Lea;Wipper;2001;W;;;;;GER;;;Sportclub Magdeburg e.V.;;GER;ST;Anhalt-Bitterfeld;Halle
+Athlete;305;;Maria;Andrejczyk;1996;W;;;;;POL;;;Polen;;POL;;;
+Athlete;306;0186540;Josefa;Schepp;2003;W;;;;;GER;;;TSV Bayer o4 Leverkusen;NO0030096;GER;NO;;LVN Region Südost
+Athlete;307;;Nikola;Ogrodníková;1990;W;;;;;CZE;;;Tschechien;;CZE;;;
+Athlete;308;0183157;Louisa;Gerhard;1998;W;;;;;GER;;;TSV Bayer o4 Leverkusen;NO0030096;GER;NO;;LVN Region Südost
+Athlete;350;0261882;Yannick;Wolf;2000;M;;;;;GER;;;LG Stadtwerke München;;GER;BY;Oberbayern Nord;Oberbayern
+Athlete;351;0089280;Julian;Wagner;1998;M;;;;;GER;;;LC Top Team Thüringen;;GER;TH;Saale-Holzlandkreis + Jena;
+Athlete;352;;Kesi;Oludoyi;1998;M;;;;;GBR;;;Großbritannien;;GBR;;;
+Athlete;353;;Erik;Cardoso;2000;M;;;;;BRA;;;Brasilien;;BRA;;;
+Athlete;354;;Felipe;Bardi;1998;M;;;;;BRA;;;Brasilien;;BRA;;;
+Athlete;355;;Zdenek;Stromšík;1994;M;;;;;CZE;;;Tschechien;;CZE;;;
+Athlete;356;0281940;Aleksandar;Askovic;1997;M;;;;;GER;;;LG Stadtwerke München;;GER;BY;Oberbayern Nord;Oberbayern
+Athlete;357;1920754;Enoch;Adegoke;2000;M;;;;;NGR;;;Nigeria;;NGR;;;
+Athlete;358;;Nasser Mahmoud;Mohammed;2002;M;;;;;KSA;;;Saudiarabien;;KSA;;;
+Athlete;359;;Mohamed;Daoud Abdullah;1993;M;;;;;KSA;;;Saudiarabien;;KSA;;;
+Athlete;360;;Fahhad Mohammed;Alsubaie;1994;M;;;;;KSA;;;Saudiarabien;;KSA;;;
+Athlete;361;;Mahmoud Hafiz;Ibrahim;1993;M;;;;;KSA;;;Saudiarabien;;KSA;;;
+Athlete;362;0019640;Robin;Ganter;2001;M;;;;;GER;;;MTG Mannheim;BA0000170;GER;BA;Rhein-Neckar-Kreis;
+Athlete;363;;Kobe;Vleminckx;1998;M;;;;;BEL;;;Belgien;;BEL;;;
+Athlete;364;;Sultan Khalid;Al-khalidi;1999;M;;;;;KSA;;;Saudiarabien;;KSA;;;
+Athlete;400;;Joseph;Deng;1998;M;;;;;AUS;;;Australien;;AUS;;;
+Athlete;401;;Jan;Vukovic;2000;M;;;;;SLO;;;Slowenien;;SLO;;;
+Athlete;402;;Ben;Pattison;2001;M;;;;;GBR;;;Großbritannien;;GBR;;;
+Athlete;403;;Elliot;Giles;1994;M;;;;;GBR;;;Großbritannien;;GBR;;;
+Athlete;404;;Jamie;Webb;1994;M;;;;;GBR;;;Großbritannien;;GBR;;;
+Athlete;405;;Tim;Holzapfel;1997;M;;;;;GER;;;Unterländer LG;;GER;WÜ;Zollernalb;
+Athlete;406;1912450;Marvin;Heinrich;1997;M;;;;;GER;;;Eintracht Frankfurt e.V.;;GER;HE;HLV-Kreis Wetzlar;Mitte
+Athlete;407;0109988;Oskar;Schwarzer;1999;M;;;;;GER;;;TV Groß-Gerau;;GER;HE;HLV-Kreis Wetzlar;Mitte
+Athlete;408;1912376;Dennis;Biederbick;1997;M;;;;;GER;;;Eintracht Frankfurt e.V.;;GER;HE;HLV-Kreis Wetzlar;Mitte
+Athlete;409;;Aurele;Vandeputte;1995;M;;;;;BEL;;;Belgien;;BEL;;;
+Athlete;410;;Tshepo;Tshite;1997;M;;;;;RSA;;;Republik Südafrika;;RSA;;;
+Athlete;411;;Khaled;Benmahdi;1988;M;;;;;ALG;;;Algerien;;ALG;;;
+Athlete;412;;Robin;Oester;1999;M;;;;;SUI;;;Schweiz;;SUI;;;
+Athlete;413;0191015;Marc;Reuther;1996;M;;;;;GER;;;Königsteiner LV;;GER;HE;HLV-Kreis Wetzlar;Mitte
+Athlete;414;;Ethan;Hussey;2003;M;;;;;GBR;;;Großbritannien;;GBR;;;
+Athlete;415;;Bram;Buigel;1995;M;;;;;NED;;;Niederlande;;NED;;;
+Athlete;416;;Ivan;Pelizza;2000;M;;;;;SUI;;;Schweiz;;SUI;;;
+Athlete;417;0502727;Navid;Kerber;2003;M;;;;;SUI;;;LC Rehlingen;SL0000082;GER;SL;Saarlouis/Merzig/Wadern;
+Athlete;418;;Marino;Bloudek;1999;M;;;;;CRO;;;Kroatien;;CRO;;;
+Athlete;450;;Tom;Elmer;1997;M;;;;;SUI;;;Schweiz;;SUI;;;
+Athlete;451;;Emedy;Kiplimo;1996;M;;;;;KEN;;;Kenya;;KEN;;;
+Athlete;452;;Jye;Edwards;1998;M;;;;;AUS;;;Australien;;AUS;;;
+Athlete;453;;Matthew;Stonier;2001;M;;;;;GBR;;;Großbritannien;;GBR;;;
+Athlete;454;0136957;Robert;Farken;1997;M;;;;;GER;;;SC DHfK Leipzig;;GER;;;
+Athlete;455;;Baptiste;Mischler;1997;M;;;;;FRA;;;Frankreich;;FRA;;;
+Athlete;456;0012218;Marius;Probst;1995;M;;;;;GER;;;TV Wattenscheid 01;;GER;WE;FLVW Kreis Steinfurt;FLVW Bezirk Münsterland
+Athlete;457;1919188;Sven;Wagner;2001;M;;;;;GER;;;Königsteiner LV;;GER;HE;HLV-Kreis Wetzlar;Mitte
+Athlete;458;;Ossama;Meslek;1997;M;;;;;ITA;;;Italien;;ITA;;;
+Athlete;459;0002582;Christoph;Kessler;1995;M;;;;;GER;;;LG Region Karlsruhe;;GER;BA;Bezirk Hegau-Bodensee;
+Athlete;460;;George;Mills;1999;M;;;;;GBR;;;Großbritannien;;GBR;;;
+Athlete;461;;Evans;Kipchumba;1994;M;;;;;KEN;;;Kenya;;KEN;;;
+Athlete;462;0108245;Lukas;Abele;1997;M;;;;;GER;;;SSC Hanau-Rodenbach;HE0000578;GER;HE;HLV-Kreis Offenbach-Hanau;Rhein-Main
+Athlete;463;;Silas;Zurfluh;2001;M;;;;;SUI;;;Schweiz;;SUI;;;
+Athlete;501;0006489;Emil;Agyekum;1999;M;;;;;GER;;;SCC Berlin;BE0001019;GER;BE;;
+Athlete;502;;Chris;Mcalister;1995;M;;;;;GBR;;;Großbritannien;;GBR;;;
+Athlete;503;1913737;Joshua;Abuaku;1996;M;;;;;GER;;;Sprintteam Wetzlar;HE0100029;GER;HE;HLV-Kreis Wetzlar;Mitte
+Athlete;504;;Julien;Bonvin;1999;M;;;;;SUI;;;Schweiz;;SUI;;;
+Athlete;505;;Dany;Brand;1996;M;;;;;SUI;;;Schweiz;;SUI;;;
+Athlete;506;;Abdelmalik;Lahoulou;1992;M;;;;;ALG;;;Algerien;;ALG;;;
+Athlete;507;;Mohammed Duhaim;Al Muawi;2001;M;;;;;KSA;;;Saudiarabien;;KSA;;;
+Athlete;508;;Giacomo;Bertoncelli;1999;M;;;;;ITA;;;Italien;;ITA;;;
+Athlete;509;;Krzysztof ;Holub;2000;M;;;;;POL;;;Polen;;POL;;;
+Athlete;550;;Issam;Zeghdane;1993;M;;;;;ALG;;;Algerien;;ALG;;;
+Athlete;551;0041443;Velten;Schneider;1999;M;;;;;GER;;;VfL Sindelfingen;;GER;WÜ;Zollernalb;
+Athlete;552;;Hichem;Bouchicha;1989;M;;;;;ALG;;;Algerien;;ALG;;;
+Athlete;553;;Ibrahim;Ezzaydouni;1991;M;;;;;ESP;;;Spanien;;ESP;;;
+Athlete;554;0164385;Frederik;Ruppert;1997;M;;;;;GER;;;SC Myhl LA;;GER;NO;;LVN Region Südost
+Athlete;555;;Michael;Curti;1994;M;;;;;SUI;;;Schweiz;;SUI;;;
+Athlete;556;0258944;Niklas;Buchholz;1998;M;;;;;GER;;;LSC Höchstadt/Aisch;;GER;BY;Oberbayern Nord;Oberbayern
+Athlete;558;;Emmanuel;Wafula;2005;M;;;;;KEN;;;Kenya;;KEN;;;
+Athlete;559;;Lawrence Kemboi;Kipsang;1993;M;;;;;KEN;;;Kenya;;KEN;;;
+Athlete;560;;Leonardo;Feletto;1995;M;;;;;ITA;;;Italien;;ITA;;;
+Athlete;561;;Bilal;Tabti;1993;M;;;;;ALG;;;Algerien;;ALG;;;
+Athlete;562;;Alexis;Phelut;1998;M;;;;;FRA;;;Frankreich;;FRA;;;
+Athlete;563;0037803;Jens;Mergenthaler;1997;M;;;;;GER;;;LG farbtex Nordschwarzwald;;GER;WÜ;Zollernalb;
+Athlete;600;;Jef;Vermeiren;2000;M;;;;;BEL;;;Belgien;;BEL;;;
+Athlete;601;;Nathan;Ismar;1999;M;;;;;FRA;;;Frankreich;;FRA;;;
+Athlete;602;;Edgar;Rivera;1991;M;;;;;MEX;;;Mexico;;MEX;;;
+Athlete;603;0253271;Tobias;Potye;1995;M;;;;;GER;;;LG Stadtwerke München;;GER;BY;Oberbayern Nord;Oberbayern
+Athlete;604;;Christian;Falocchi;1997;M;;;;;ITA;;;Italien;;ITA;;;
+Athlete;605;;Fernando;Ferreira;1994;M;;;;;BRA;;;Brasilien;;BRA;;;
+Athlete;606;;Luis;Castro Rivera;1991;M;;;;;PUR;;;Puerto Rico;;PUR;;;
+Athlete;607;;Bohdan;Bondarenko;1989;M;;;;;UKR;;;Ukraine;;UKR;;;
+Athlete;608;0186521;Florian;Hornig;2000;M;;;;;GER;;;TSV Bayer 04 Leverkusen;;GER;;;
+Athlete;650;;Piotr;Lisek;1992;M;;;;;POL;;;Polen;;POL;;;
+Athlete;651;;Menno;Vloon;1994;M;;;;;NED;;;Niederlande;;NED;;;
+Athlete;652;;Tom-Linus;Humann;1998;M;;;;;GER;;;Schweriner SC;;GER;MV;;
+Athlete;653;0003558;Gillian;Ladwig;1998;M;;;;;GER;;;Schweriner SC;;GER;MV;;
+Athlete;654;;Riccardo;Klotz;1999;M;;;;;AUT;;;Österreich;;AUT;;;
+Athlete;655;0008480;Raphael;Holzdeppe;1989;M;;;;;GER;;;LAZ Zweibrücken;;GER;PF;;Bezirk Vorderpfalz
+Athlete;656;;Rutger;Koppelaar;1993;M;;;;;NED;;;Niederlande;;NED;;;
+Athlete;657;;Ersu;Sasma;1999;M;;;;;TUR;;;Türkei;;TUR;;;
+Athlete;658;;Matt;Ludwig;1996;M;;;;;USA;;;Vereinigte Staaten von Amerika;;USA;;;
+Athlete;659;;Austin;Miller;1994;M;;;;;USA;;;Vereinigte Staaten von Amerika;;USA;;;
+Athlete;660;;Urho;Kujanpää;1997;M;;;;;FIN;;;Finnland;;FIN;;;
+Athlete;661;0166873;Bo Kanda;Lita Baehre;1999;M;;;;;GER;;;TSV Bayer o4 Leverkusen;NO0030096;GER;NO;;LVN Region Südost
+Athlete;662;0281977;Louis;Pröbstle;2002;M;;;;;GER;;;MTG Mannheim;BA0000170;GER;BA;Rhein-Neckar-Kreis;
+Athlete;663;0171068;Luke;Zenker;2003;M;;;;;GER;;;TSV Bayer o4 Leverkusen;NO0030096;GER;NO;;LVN Region Südost
+Athlete;700;0001817;Julian;Weber;1994;M;;;;;GER;;;USC Mainz;;GER;RH;;
+Athlete;701;0107312;Maurice;Voigt;2000;M;;;;;GER;;;LG Ohra Energie;;GER;TH;Saale-Holzlandkreis + Jena;
+Athlete;702;;Marcin;Krukowski;1992;M;;;;;POL;;;Polen;;POL;;;
+Athlete;703;;Lassi;Etelätalo;1988;M;;;;;FIN;;;Finnland;;FIN;;;
+Athlete;704;0013039;Andreas;Hofmann;1991;M;;;;;GER;;;MTG Mannheim;BA0000170;GER;BA;Rhein-Neckar-Kreis;
+Athlete;705;;Timothy;Herman;1990;M;;;;;BEL;;;Belgien;;BEL;;;
+Athlete;706;0190257;Max;Dehning;2004;M;;;;;GER;;;TSV Bayer o4 Leverkusen;NO0030096;GER;NO;;LVN Region Südost
+Athlete;707;;Toni;Kuusela;1994;M;;;;;FIN;;;Finnland;;FIN;;;
+Athlete;708;;Ali Essa;Abdelghani;1995;M;;;;;KSA;;;Saudiarabien;;KSA;;;
+Athlete;709;;Cyprian;Mrzyglód;1998;M;;;;;POL;;;Polen;;POL;;;
+Athlete;750;0162588;Markus;Rehm;1988;M;;;;;GER;;;TSV Bayer o4 Leverkusen;NO0030096;GER;NO;;LVN Region Südost
+Athlete;751;;Can;Cakmak;2005;M;;;;;GER;;;TSV Bayer o4 Leverkusen;NO0030096;GER;NO;;LVN Region Südost
+Athlete;752;;Stylianos;Malakopoulos;1996;M;;;;;GRE;;;TSV Bayer o4 Leverkusen;NO0030096;GER;NO;;LVN Region Südost
+Athlete;753;0008769;Ali;Lacin;1988;M;;;;;GER;;;SCC Berlin;BE0001019;GER;BE;;
+Athlete;754;0172201;Leon;Schäfer;1997;M;;;;;GER;;;TSV Bayer o4 Leverkusen;NO0030096;GER;NO;;LVN Region Südost
+Athlete;755;0010528;Friederike;Brose;2007;W;;;;;GER;;;BPRSV e.V.;BB0052159;GER;BB;;
+Athlete;756;0173554;Nele;Moos;2001;W;;;;;GER;;;TSV Bayer o4 Leverkusen;NO0030096;GER;NO;;LVN Region Südost
+Athlete;757;0502693;Kim;Vaske;2005;W;;;;;GER;;;TSV Bayer o4 Leverkusen;NO0030096;GER;NO;;LVN Region Südost
+Athlete;758;;Jule;Roß;2006;W;;;;;GER;;;TSV Bayer o4 Leverkusen;NO0030096;GER;NO;;LVN Region Südost
+Athlete;759;;Sofia;Gonzalez;2001;W;;;;;SUI;;;Plusport Swiss;;SUI;;;
+Athlete;760;;Tim;Linke;2002;M;;;;;GER;;;PSC Berlin;;GER;;;
+Athlete;800;121212;Maurice;Choppin;2009;M;;;;;GER;;;TG Konz;1354;GER;RL;Trier-Saarburg;
+Athlete;801;502447;David-Luis;Maistoru;2009;M;;;;;GER;;;LC Rehlingen;SL0000082;GER;SL;Saarlouis/Merzig/Wadern;
+Athlete;802;502833;Mateo;Schmitt;2020;M;;;;;GER;;;SV GO! Saar 05;SL0000091;GER;SL;Saarbrücken / Saar-Pfalz;
+Athlete;803;982536;Ole Nicolas;Schöndorf;2009;M;;;;;GER;;;TV Lemberg;244;GER;PF;;Bezirk Westpfalz
+Athlete;804;120844;Jonas;Teusch;2009;M;;;;;GER;;;LG Bernkastel/Wittlich;9016;GER;RL;Bernkastel-Wittlich;
+Athlete;805;502571;Moritz;Wiesen;2009;M;;;;;GER;;;LC Rehlingen;SL0000082;GER;SL;Saarlouis/Merzig/Wadern;
+Athlete;806;502179;Jonas;Fedick;2008;M;;;;;GER;;;LC Rehlingen;SL0000082;GER;SL;Saarlouis/Merzig/Wadern;
+Athlete;807;502825;Noé Filippo;Gueli;2008;M;;;;;GER;;;LC Rehlingen;SL0000082;GER;SL;Saarlouis/Merzig/Wadern;
+Athlete;808;501497;Santiago;Kalkes;2008;M;;;;;GER;;;LAC Saarlouis;155;GER;SL;Saarlouis/Merzig/Wadern;
+Athlete;809;120492;Theo;Knopp;2008;M;;;;;GER;;;Post-Sportverein Trier;1255;GER;RL;Trier-Saarburg;
+Athlete;810;502110;Fabius;Marquordt;2008;M;;;;;GER;;;LAC Saarlouis;155;GER;SL;Saarlouis/Merzig/Wadern;
+Athlete;811;120979;Raphael;Steeb;2008;M;;;;;GER;;;LAZ Birkenfeld;9025;GER;RL;Birkenfeld;
+Athlete;812;;Tom;Bausch;2007;M;;;;;LUX;;;CS Luxemburg;;LUX;;;
+Athlete;813;500844;Jannis;Brunschön;2006;M;;;;;GER;;;SV GO! Saar 05;SL0000091;GER;SL;Saarbrücken / Saar-Pfalz;
+Athlete;814;510840;Hannes;Ebener;2006;M;;;;;GER;;;TSG Eisenberg;93;GER;PF;;Bezirk Vorderpfalz
+Athlete;815;501392;Simon;Harig;2006;M;;;;;GER;;;LC Rehlingen;SL0000082;GER;SL;Saarlouis/Merzig/Wadern;
+Athlete;816;;Victor;Henz;2006;M;;;;;LUX;;;CS Luxemburg;;LUX;;;
+Athlete;817;;Jack;Konsbruck;2007;M;;;;;LUX;;;CS Luxemburg;;LUX;;;
+Athlete;818;502251;Linus;Krier;2007;M;;;;;GER;;;LC Rehlingen;SL0000082;GER;SL;Saarlouis/Merzig/Wadern;
+Athlete;819;;Pierre;Marchandise;2007;M;;;;;LUX;;;CS Luxemburg;;LUX;;;
+Athlete;820;501044;Benjamin;Stumm;2006;M;;;;;GER;;;LSG Sbr.-Sulzbachtal;SL0001008;GER;SL;Saarbrücken / Saar-Pfalz;
+Athlete;821;501190;Lucca;Agostini;2006;M;;;;;GER;;;LC Rehlingen;SL0000082;GER;SL;Saarlouis/Merzig/Wadern;
+Athlete;822;500536;David;Berson;2006;M;;;;;GER;;;LC Rehlingen;SL0000082;GER;SL;Saarlouis/Merzig/Wadern;
+Athlete;823;501425;Abie;Hensgen;2007;M;;;;;GER;;;LC Rehlingen;SL0000082;GER;SL;Saarlouis/Merzig/Wadern;
+Athlete;824;119838;Hannes;Hubertz;2004;M;;;;;GER;;;Post-Sportverein Trier;1255;GER;RL;Trier-Saarburg;
+Athlete;825;500454;Nicolas;Kopelsky;2005;M;;;;;GER;;;ATSV Saarbrücken;87;GER;SL;Saarbrücken / Saar-Pfalz;
+Athlete;826;;Ben;Schlammes;2004;M;;;;;LUX;;;Celtic Diekirch;;LUX;;;
+Athlete;827;0501917;Lennart;Zehfeld;2005;M;;;;;GER;;;LC Rehlingen;SL0000082;GER;SL;Saarlouis/Merzig/Wadern;
+Athlete;828;121317;Lilly;Förster;2011;W;;;;;GER;;;Post-Sportverein Trier;1255;GER;RL;Trier-Saarburg;
+Athlete;829;119668;Helena;Gouverneur;2009;W;;;;;GER;;;LAZ Birkenfeld;9025;GER;RL;Birkenfeld;
+Athlete;830;502056;Emilia;Jerzenbeck;2009;W;;;;;GER;;;LC Rehlingen;SL0000082;GER;SL;Saarlouis/Merzig/Wadern;
+Athlete;831;502325;Li;Libens-Thein;2009;W;;;;;LUX;;;LC Rehlingen;SL0000082;GER;SL;Saarlouis/Merzig/Wadern;
+Athlete;832;502167;Maxine;Libens-Thein;2012;W;;;;;LUX;;;LC Rehlingen;SL0000082;GER;SL;Saarlouis/Merzig/Wadern;
+Athlete;833;983208;Sophie;Meyer;2010;W;;;;;GER;;;TV Lemberg;244;GER;PF;;Bezirk Westpfalz
+Athlete;834;502552;Hannah;Mues;2011;W;;;;;GER;;;SV GO! Saar 05;SL0000091;GER;SL;Saarbrücken / Saar-Pfalz;
+Athlete;835;502176;Liara;Schulze;2009;W;;;;;GER;;;LC Rehlingen;SL0000082;GER;SL;Saarlouis/Merzig/Wadern;
+Athlete;836;502453;Smilla;Sempruch;2009;W;;;;;GER;;;LC Rehlingen;SL0000082;GER;SL;Saarlouis/Merzig/Wadern;
+Athlete;837;121015;Annick;Steeb;2010;W;;;;;GER;;;LAZ Birkenfeld;9025;GER;RL;Birkenfeld;
+Athlete;838;121209;Nele;Wagner;2010;W;;;;;GER;;;TG Konz;1354;GER;RL;Trier-Saarburg;
+Athlete;839;502463;Elena;Blug;2008;W;;;;;GER;;;LAC Saarlouis;155;GER;SL;Saarlouis/Merzig/Wadern;
+Athlete;840;;Elena;Lopes;2008;W;;;;;LUX;;;LIAL;;LUX;;;
+Athlete;841;121006;Johanna;Raßkopf;2008;W;;;;;GER;;;Post-Sportverein Trier;1255;GER;RL;Trier-Saarburg;
+Athlete;842;121049;Victoria;Vieh;2008;W;;;;;GER;;;Post-Sportverein Trier;1255;GER;RL;Trier-Saarburg;
+Athlete;843;;Eve;Weis;2008;W;;;;;LUX;;;Celtic Diekirch;;LUX;;;
+Athlete;845;;Sophie;Fessaguet;2007;W;;;;;LUX;;;Celtic Diekirch;;LUX;;;
+Athlete;846;;Lou;Schmit;2006;W;;;;;LUX;;;CAEG;;LUX;;;
+Athlete;847;501918;Emely;Krieger;2007;W;;;;;GER;;;LC Rehlingen;SL0000082;GER;SL;Saarlouis/Merzig/Wadern;
+Athlete;848;500430;Hannah;Rödel;2004;W;;;;;GER;;;LC Rehlingen;SL0000082;GER;SL;Saarlouis/Merzig/Wadern;
+Athlete;849;500306;Lara;Wiegmann;2004;W;;;;;GER;;;ATSV Saarbrücken;87;GER;SL;Saarbrücken / Saar-Pfalz;
+Athlete;850;0502699;Lasse;Oldenburg;2009;M;;;;;GER;;;SV GO! Saar 05;SL0000091;GER;SL;Saarbrücken / Saar-Pfalz;
+Athlete;851;0502219;Niels;Jung;2009;M;;;;;GER;;;LSG Sbr.-Sulzbachtal;SL0001008;GER;SL;Saarbrücken / Saar-Pfalz;
+Athlete;852;0502631;Johannes;Bach;2011;M;;;;;GER;;;TV Ludweiler;SL0000061;GER;SL;Saarbrücken / Saar-Pfalz;
+Athlete;853;;Jachym;Kotecky;2011;M;;;;;CZE;;;Celtic Diekirch;;LUX;;;
+Athlete;854;;Anna Marie;Kotecká;2009;W;;;;;CZE;;;Celtic Diekirch;;LUX;;;
+Athlete;855;;Elena;Entinger;2006;W;;;;;FRA;;;Esty Thionville-Yutz;;FRA;;;
