@@ -30,3 +30,8 @@ Currently implemented Protocols:
 - [x] LapCounter (Serial) 
 - [x] Startliste File Parser (CSV)
 - [ ] ASC2 (Serial)
+
+
+# Lynx 
+
+- Scoreboard -> Show placing must be turned on
