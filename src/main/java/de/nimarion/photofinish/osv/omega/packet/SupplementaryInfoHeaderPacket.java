@@ -25,8 +25,11 @@ public class SupplementaryInfoHeaderPacket extends OmegaPacket {
         List<Integer> lengths = new ArrayList<>();
         String[] chunks = cutString(information, 6);
         for (String chunk : chunks) {
+            if (chunk.length() < 6) {
+                continue;
+            }
             String field = chunk.substring(0, 4);
-            int length = Integer.parseInt(chunk.substring(4));
+            int length = Integer.parseInt(chunk.substring(4).trim());
             fields.add(field);
             lengths.add(length);
         }

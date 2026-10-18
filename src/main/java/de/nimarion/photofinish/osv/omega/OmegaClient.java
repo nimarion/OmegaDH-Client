@@ -31,7 +31,7 @@ import de.nimarion.photofinish.osv.omega.packet.RecoverFinishPacket;
 import de.nimarion.photofinish.osv.omega.packet.ResultHundredsPacket;
 import de.nimarion.photofinish.osv.omega.packet.ResultIntermediatePacket;
 import de.nimarion.photofinish.osv.omega.packet.ResultThousandsPacket;
-import de.nimarion.photofinish.osv.omega.packet.ResultsOfficalPacket;
+import de.nimarion.photofinish.osv.omega.packet.ResultsOfficialPacket;
 import de.nimarion.photofinish.osv.omega.packet.StartRankingPacket;
 import de.nimarion.photofinish.osv.omega.packet.StartedPacket;
 import de.nimarion.photofinish.osv.omega.packet.SupplementaryInfoDataPacket;
@@ -63,7 +63,7 @@ public class OmegaClient extends TCPClient {
         registerPacket(new ResultHundredsPacket());
         registerPacket(new ResultIntermediatePacket());
         registerPacket(new ResultThousandsPacket());
-        registerPacket(new ResultsOfficalPacket());
+        registerPacket(new ResultsOfficialPacket());
         registerPacket(new StartRankingPacket());
         registerPacket(new StartedPacket());
         registerPacket(new SupplementaryInfoDataPacket());

@@ -26,7 +26,7 @@ public class ReactionTimePacket extends OmegaPacket {
         if (!super.isPacket(data)) {
             return false;
         }
-        return data.length >= 11 && data[11] == 48;
+        return data.length > 11 && data[11] == 48;
     }
 
     @Override
@@ -34,7 +34,10 @@ public class ReactionTimePacket extends OmegaPacket {
         // TODO: Special handling for this packet
         // Same type result intermediate packet but three space + 0 + three space
         // indicate a reaction time packet there <SOH><DC3>DVRTC<STX> 0 %2%3 %1%4<EOT>
-        dataString = dataString.substring(8, dataString.length());
+        if (dataString.length() < 8) {
+            return null;
+        }
+        dataString = dataString.substring(8);
         char[] data = dataString.toCharArray();
         int bib = Integer.parseInt(new String(Arrays.copyOfRange(data, 0, 5)).trim());
         int lane = Integer.parseInt(new String(Arrays.copyOfRange(data, 5, 7)).trim());

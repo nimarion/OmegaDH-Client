@@ -7,19 +7,19 @@ public class LynxResult {
     private final int lane;
     private final String firstname;
     private final String lastname;
-    private final String affilation;
+    private final String affiliation;
     private final String time;
     private final String license;
     private final String reactionTime;
 
-    public LynxResult(int place, int bib, int lane, String firstname, String lastname, String affilation, String time,
+    public LynxResult(int place, int bib, int lane, String firstname, String lastname, String affiliation, String time,
             String license, String reactionTime) {
         this.place = place;
         this.bib = bib;
         this.lane = lane;
         this.firstname = firstname;
         this.lastname = lastname;
-        this.affilation = affilation;
+        this.affiliation = affiliation;
         this.time = time;
         this.license = license;
         this.reactionTime = reactionTime;
@@ -45,8 +45,13 @@ public class LynxResult {
         return lastname;
     }
 
+    public String getAffiliation() {
+        return affiliation;
+    }
+
+    @Deprecated
     public String getAffilation() {
-        return affilation;
+        return affiliation;
     }
 
     public String getTime() {

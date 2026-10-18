@@ -5,14 +5,14 @@ import de.nimarion.photofinish.osv.omega.OmegaPacket;
 import de.nimarion.photofinish.osv.omega.event.ResultsOfficialEvent;
 
 /**
- * Name: [Offical]
+ * Name: [Official]
  * Group: [RESULT]
  * Message: <SOH><DC3>DVRFJ<STX>%0<EOT>
  * Placeholder 0: RACE_ID
  */
-public class ResultsOfficalPacket extends OmegaPacket {
+public class ResultsOfficialPacket extends OmegaPacket {
 
-    public ResultsOfficalPacket() {
+    public ResultsOfficialPacket() {
         super("RFJ");
     }
 

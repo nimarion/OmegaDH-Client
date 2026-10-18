@@ -264,4 +264,36 @@ class PacketTest {
         FinishLynxClient lynxClient = new FinishLynxClient(config);
         assertInstanceOf(ResultHeaderPacket.class, lynxClient.getPacket(new byte[] { 1, 76, 72, 2, 65, 4 }));
     }
+
+    @Test
+    void testOmegaEdgeCasesAndOfficialPacket() {
+        // 11-byte RTC frame must not throw ArrayIndexOutOfBoundsException
+        byte[] elevenByteRtc = "\u0001\u0013DVRTC\u0002   ".getBytes(StandardCharsets.US_ASCII);
+        assertEquals(11, elevenByteRtc.length);
+        assertFalse(new de.nimarion.photofinish.osv.omega.packet.ReactionTimePacket().isPacket(elevenByteRtc));
+        assertFalse(new de.nimarion.photofinish.osv.omega.packet.ResultIntermediatePacket().isPacket(elevenByteRtc));
+
+        // ResultThousandsPacket without decimal point (e.g. DNS)
+        de.nimarion.photofinish.osv.omega.packet.ResultThousandsPacket thousandsPacket =
+                new de.nimarion.photofinish.osv.omega.packet.ResultThousandsPacket();
+        de.nimarion.photofinish.osv.omega.event.ResultThousandsEvent dnsThousands = assertInstanceOf(
+                de.nimarion.photofinish.osv.omega.event.ResultThousandsEvent.class,
+                thousandsPacket.handleData("  1  643 6   DNS"));
+        assertEquals("DNS", dnsThousands.getTime());
+
+        // SupplementaryInfoHeaderPacket with trailing short chunk
+        de.nimarion.photofinish.osv.omega.packet.SupplementaryInfoHeaderPacket headerPacket =
+                new de.nimarion.photofinish.osv.omega.packet.SupplementaryInfoHeaderPacket();
+        SupplementaryInfoHeaderEvent headerEvent = assertInstanceOf(
+                SupplementaryInfoHeaderEvent.class,
+                headerPacket.handleData("CLUB16 "));
+        assertEquals(List.of("CLUB"), headerEvent.getFields());
+        assertEquals(List.of(16), headerEvent.getLengths());
+
+        // ResultsOfficialPacket
+        de.nimarion.photofinish.osv.omega.packet.ResultsOfficialPacket officialPacket =
+                new de.nimarion.photofinish.osv.omega.packet.ResultsOfficialPacket();
+        byte[] officialRaw = "\u0001\u0013DVRFJ\u000203901001\u0004".getBytes(StandardCharsets.US_ASCII);
+        assertTrue(officialPacket.isPacket(officialRaw));
+    }
 }

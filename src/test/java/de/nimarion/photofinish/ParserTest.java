@@ -50,7 +50,7 @@ class ParserTest {
         assertEquals(6, finisher.getLane());
         assertEquals("Vaughn", finisher.getLastname());
         assertEquals("Angela", finisher.getFirstname());
-        assertEquals("UNIVERSITY OF TEXAS", finisher.getAffilation());
+        assertEquals("UNIVERSITY OF TEXAS", finisher.getAffiliation());
         assertEquals("12.80", finisher.getTime());
         assertEquals("0.162", finisher.getReactionTime());
     }
@@ -74,12 +74,12 @@ class ParserTest {
         assertEquals(8, first.getLane());
         assertEquals("Ksenia", first.getFirstname());
         assertEquals("Helios", first.getLastname());
-        assertEquals("SV GO! Saar 05", first.getAffilation());
+        assertEquals("SV GO! Saar 05", first.getAffiliation());
         assertEquals("7.636", first.getTime());
 
         LynxResult third = results.getResults().get(2);
         assertEquals(3, third.getPlace());
-        assertEquals("LAC Quelle Fürth", third.getAffilation());
+        assertEquals("LAC Quelle Fürth", third.getAffiliation());
     }
 
     @Test

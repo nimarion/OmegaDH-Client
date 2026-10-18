@@ -24,13 +24,10 @@ public class ResultIntermediatePacket extends OmegaPacket {
 
     @Override
     public boolean isPacket(byte[] data) {
-        if(!super.isPacket(data)){
+        if (!super.isPacket(data)) {
             return false;
         }
-        if(data.length >= 11 && data[11] == 48){
-            return false;
-        }
-        return true;
+        return data.length > 11 && data[11] != 48;
     }
 
     @Override
