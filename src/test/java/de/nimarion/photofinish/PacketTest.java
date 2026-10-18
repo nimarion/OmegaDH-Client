@@ -240,4 +240,25 @@ class PacketTest {
             }
         }
     }
+
+    @Test
+    void testGeminiResultEventNullableRankAndLane() {
+        de.nimarion.photofinish.osv.gemini.event.ResultEvent event =
+                new de.nimarion.photofinish.osv.gemini.event.ResultEvent(1, 42, "10.55");
+        assertEquals(1, event.getLine());
+        assertEquals(42, event.getBib());
+        assertEquals("10.55", event.getTime());
+        assertNull(event.getRank());
+        assertNull(event.getLane());
+    }
+
+    @Test
+    void testStringUtilsHexToAsciiWithSpaces() {
+        byte[] bytes = de.nimarion.photofinish.utils.StringUtils.hexToAscii("01 02 0A");
+        org.junit.jupiter.api.Assertions.assertArrayEquals(new byte[] { 1, 2, 10 }, bytes);
+
+        org.junit.jupiter.api.Assertions.assertThrows(
+                IllegalArgumentException.class,
+                () -> de.nimarion.photofinish.utils.StringUtils.hexToAscii("01 0"));
+    }
 }

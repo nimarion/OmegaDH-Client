@@ -22,10 +22,10 @@ public class StringUtils {
     }
 
     public static byte[] hexToAscii(String hexStr) {
-        if(hexStr.length() % 2 != 0) {
+        hexStr = hexStr.replaceAll(" ", "");
+        if (hexStr.length() % 2 != 0) {
             throw new IllegalArgumentException("Hex string must have an even length");
         }
-        hexStr = hexStr.replaceAll(" ", "");
         byte[] bytes = new byte[hexStr.length() / 2];
 
         for (int i = 0; i < hexStr.length(); i += 2) {

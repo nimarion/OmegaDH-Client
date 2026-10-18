@@ -28,11 +28,11 @@ public class ResultEvent extends GeminiEvent {
         this.lane = null;
     }
 
-    public int getRank() {
+    public Integer getRank() {
         return rank;
     }
 
-    public int getLane() {
+    public Integer getLane() {
         return lane;
     }
 
