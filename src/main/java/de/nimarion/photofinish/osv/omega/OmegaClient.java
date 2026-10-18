@@ -44,12 +44,13 @@ public class OmegaClient extends TCPClient {
             currentRaceId = enterRaceEvent.getRaceId();
         }
         if (event instanceof ResultEndEvent) {
-            FullResultsEvent fullResultsEvent = new FullResultsEvent(currentRaceId, bibResult.values().stream().toList());
+            FullResultsEvent fullResultsEvent = new FullResultsEvent(currentRaceId, List.copyOf(bibResult.values()));
             super.handleEvent(fullResultsEvent);
             super.handleEvent(event);
             bibResult.clear();
             rankingStarted = false;
             currentRaceId = null;
+            lastSupplementaryInfoHeader = null;
             return;
         }
         if (event instanceof StartRankingEvent) {
@@ -70,13 +71,20 @@ public class OmegaClient extends TCPClient {
             lastSupplementaryInfoHeader = (SupplementaryInfoHeaderEvent) event;
             return;
         } else if (event instanceof SupplementaryInfoDataEvent) {
+            if (lastSupplementaryInfoHeader == null) {
+                return;
+            }
             SupplementaryInfoDataEvent supplementaryInfoDataEvent = (SupplementaryInfoDataEvent) event;
+            String dataString = supplementaryInfoDataEvent.getDataString();
             int lastIndex = 0;
             for (int i = 0; i < lastSupplementaryInfoHeader.getFields().size(); i++) {
                 String field = lastSupplementaryInfoHeader.getFields().get(i);
                 int length = lastSupplementaryInfoHeader.getLengths().get(i);
-                String value = supplementaryInfoDataEvent.getDataString().substring(lastIndex, lastIndex + length - 1)
-                        .trim();
+                int endIndex = Math.min(lastIndex + length - 1, dataString.length());
+                if (lastIndex >= endIndex) {
+                    break;
+                }
+                String value = dataString.substring(lastIndex, endIndex).trim();
                 lastIndex += length;
                 supplementaryInfoDataEvent.addData(field, value);
             }
@@ -106,15 +114,13 @@ public class OmegaClient extends TCPClient {
             }
             return;
         }
-        if(event instanceof ReactionTimeEvent){
-            
+        if (event instanceof ReactionTimeEvent) {
             ReactionTimeEvent reactionTimeEvent = (ReactionTimeEvent) event;
             if (bibResult.containsKey(reactionTimeEvent.getBib())) {
-                if(reactionTimeEvent.getReactionTime() != null){
+                if (reactionTimeEvent.getReactionTime() != null) {
                     bibResult.get(reactionTimeEvent.getBib()).setReactionTime(reactionTimeEvent.getReactionTime());
                 }
                 super.handleEvent(bibResult.get(reactionTimeEvent.getBib()));
-                handleEvent(bibResult.get(reactionTimeEvent.getBib()));
             }
             return;
         }
@@ -128,7 +134,7 @@ public class OmegaClient extends TCPClient {
         } else {
             byte[] information = new byte[data.length - 10];
             System.arraycopy(data, 8, information, 0, data.length - 10);
-            event = packet.handleData(new String(information));
+            event = packet.handleData(new String(information, CP1252));
         }
         if (event != null) {
             handleEvent(event);

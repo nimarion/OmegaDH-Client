@@ -17,6 +17,9 @@ public class FrontcameraPacket implements Packet {
 
     @Override
     public boolean isPacket(byte[] data) {
+        if (data == null || data.length < 5) {
+            return false;
+        }
         byte[] type = new byte[3];
         System.arraycopy(data, 2, type, 0, 3);
         String packetType = new String(type);

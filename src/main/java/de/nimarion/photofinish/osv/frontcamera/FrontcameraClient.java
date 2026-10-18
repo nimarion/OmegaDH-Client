@@ -23,7 +23,7 @@ public class FrontcameraClient extends TCPClient {
         } else {
             byte[] information = new byte[data.length - 10];
             System.arraycopy(data, 8, information, 0, data.length - 10);
-            event = packet.handleData(new String(information));
+            event = packet.handleData(new String(information, CP1252));
         }
         if (event != null) {
             handleEvent(event);

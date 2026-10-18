@@ -22,7 +22,7 @@ public class SiroccoClient extends SerialClient {
             baos.write(read);
             if (read == 3) {
                 Packet packet = new WindPacket();
-                Event event = packet.handleData(new String(baos.toString()));
+                Event event = packet.handleData(baos.toString(CP1252));
                 if(event != null){
                     handleEvent(event);
                 }

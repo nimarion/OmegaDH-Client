@@ -17,7 +17,7 @@ public class GeminiClient extends TCPClient {
 
     @Override
     public void handleData(Packet packet, byte[] data) {
-        Event event = packet.handleData(new String(data));
+        Event event = packet.handleData(new String(data, CP1252));
         if (event != null) {
             handleEvent(event);
         }

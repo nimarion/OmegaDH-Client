@@ -3,6 +3,7 @@ package de.nimarion.photofinish;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import de.nimarion.photofinish.utils.StringUtils;
 public abstract class Client extends Thread {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Client.class);
+    protected static final Charset CP1252 = Charset.forName("Cp1252");
 
     private List<EventHandler> eventHandlers;
     private final List<Packet> packets;
@@ -32,7 +34,7 @@ public abstract class Client extends Thread {
     }
 
     public void handleData(Packet packet, byte[] data) {
-        Event event = packet.handleData(new String(data));
+        Event event = packet.handleData(new String(data, CP1252));
         if (event != null) {
             handleEvent(event);
         }
@@ -76,10 +78,10 @@ public abstract class Client extends Thread {
                     byte[] bytes = baos.toByteArray();
                     Packet packet = getPacket(bytes);
                     if (packet != null) {
-                        handleData(packet, new String(bytes, "cp1252").getBytes());
+                        handleData(packet, bytes);
                     } else {
-                        LOGGER.warn("Unknown packet: {} -> {}", StringUtils.toAscii(new String(bytes)),
-                                new String(bytes));
+                        String decoded = new String(bytes, CP1252);
+                        LOGGER.warn("Unknown packet: {} -> {}", StringUtils.toAscii(decoded), decoded);
                     }
                 } catch (Exception ex) {
                     LOGGER.error("Failed to handle incoming packet", ex);

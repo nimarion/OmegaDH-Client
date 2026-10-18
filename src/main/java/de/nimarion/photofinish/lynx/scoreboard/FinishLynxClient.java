@@ -37,7 +37,7 @@ public class FinishLynxClient extends TCPClient {
             results.add((ResultEvent) event);
         }
         if(event instanceof ResultEndEvent){
-            FullResultsEvent fullResultsEvent = new FullResultsEvent(currentRaceId, results);
+            FullResultsEvent fullResultsEvent = new FullResultsEvent(currentRaceId, List.copyOf(results));
             super.handleEvent(fullResultsEvent);
             results.clear();
         }
@@ -45,7 +45,7 @@ public class FinishLynxClient extends TCPClient {
 
     @Override
     public void handleData(Packet packet, byte[] data) {
-        Event event = packet.handleData(new String(data));
+        Event event = packet.handleData(new String(data, CP1252));
         if (event != null) {
             handleEvent(event);
         }

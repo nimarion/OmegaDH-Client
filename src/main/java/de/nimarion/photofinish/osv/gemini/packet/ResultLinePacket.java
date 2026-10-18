@@ -37,7 +37,7 @@ public class ResultLinePacket extends GeminiPacket {
 
     @Override
     public boolean isPacket(byte[] data) {
-        if (data.length < PACKET_IDENTIFIER.length) {
+        if (data == null || data.length < 5) {
             return false;
         }
         for (int i = 0; i < PACKET_IDENTIFIER.length; i++) {
@@ -47,7 +47,12 @@ public class ResultLinePacket extends GeminiPacket {
         }
         if (data[4] >= 48 && data[4] <= 51) {
             String dataString = new String(data);
-            String firstdata = dataString.substring(dataString.indexOf('\u0008') + 1, dataString.lastIndexOf('\u0002'));
+            int bsIndex = dataString.indexOf('\u0008');
+            int stxIndex = dataString.lastIndexOf('\u0002');
+            if (bsIndex < 0 || stxIndex <= bsIndex) {
+                return false;
+            }
+            String firstdata = dataString.substring(bsIndex + 1, stxIndex);
             // blank -> NetTimePacket
             return !firstdata.isBlank();
         }
