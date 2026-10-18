@@ -1,11 +1,15 @@
 package de.nimarion.photofinish.lynx.scoreboard.packet;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import de.nimarion.photofinish.common.result.ResultStartEvent;
 import de.nimarion.photofinish.lynx.scoreboard.FinishLynxPacket;
 import de.nimarion.photofinish.osv.Event;
 
 public class ResultHeaderPacket extends FinishLynxPacket {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(ResultHeaderPacket.class);
     private static final byte[] HEADER_PACKET_IDENTIFIER = new byte[] { 1, 76, 72, 2 };
     private static final byte[] STARTLIST_PACKET_IDENTIFIER = new byte[] { 1, 83, 72, 2};
 
@@ -49,7 +53,7 @@ public class ResultHeaderPacket extends FinishLynxPacket {
             try {
                 return Integer.parseInt(data[index].trim());
             } catch (NumberFormatException e) {
-                e.printStackTrace();
+                LOGGER.warn("Failed to parse integer at index {} from '{}'", index, data[index], e);
             }
         }
         return defaultValue;

@@ -8,11 +8,15 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.reflections.Reflections;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.nimarion.photofinish.osv.Packet;
 import de.nimarion.photofinish.osv.ProtocolConfiguration;
 
 public abstract class TCPClient extends Client {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(TCPClient.class);
 
     private final String host;
     private final int port;
@@ -20,7 +24,7 @@ public abstract class TCPClient extends Client {
     private boolean active = true;
 
     public TCPClient(String host, int port) {
-        System.out.println("Starting " + this.getClass().getSimpleName() + " Client on " + host + ":" + port);
+        LOGGER.info("Starting {} Client on {}:{}", this.getClass().getSimpleName(), host, port);
         this.host = host;
         this.port = port;
         final Set<Class<? extends Packet>> packets = new Reflections(this.getClass().getPackageName() + ".packet")
@@ -33,8 +37,7 @@ public abstract class TCPClient extends Client {
                 final Packet packet = packetClass.getDeclaredConstructor().newInstance();
                 registerPacket(packet);
             } catch (Exception exception) {
-                System.out.println("Failed to register " + packetClass.getSimpleName() + " Packet");
-                exception.printStackTrace();
+                LOGGER.error("Failed to register {} Packet", packetClass.getSimpleName(), exception);
             }
         }
     }
@@ -60,13 +63,15 @@ public abstract class TCPClient extends Client {
                         InputStream is = socket.getInputStream()) {
                     handleInputstream(is);
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    LOGGER.error("Connection error on {}:{}", host, port, e);
                 }
             }
             try {
                 TimeUnit.SECONDS.sleep(autoReconnectDelay);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                Thread.currentThread().interrupt();
+                LOGGER.warn("Reconnect delay interrupted", e);
+                break;
             }
         }
     }

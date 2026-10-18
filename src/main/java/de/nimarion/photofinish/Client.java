@@ -6,11 +6,16 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import de.nimarion.photofinish.osv.Event;
 import de.nimarion.photofinish.osv.Packet;
 import de.nimarion.photofinish.utils.StringUtils;
 
 public abstract class Client extends Thread {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(Client.class);
 
     private List<EventHandler> eventHandlers;
     private final List<Packet> packets;
@@ -73,11 +78,11 @@ public abstract class Client extends Thread {
                     if (packet != null) {
                         handleData(packet, new String(bytes, "cp1252").getBytes());
                     } else {
-                        System.out.println("Unknown packet: " + StringUtils.toAscii(new String(bytes))
-                                + " -> " + new String(bytes));
+                        LOGGER.warn("Unknown packet: {} -> {}", StringUtils.toAscii(new String(bytes)),
+                                new String(bytes));
                     }
                 } catch (Exception ex) {
-                    ex.printStackTrace();
+                    LOGGER.error("Failed to handle incoming packet", ex);
                 } finally {
                     baos.reset();
                 }

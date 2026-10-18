@@ -3,6 +3,7 @@ package de.nimarion.photofinish.lynx.result;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,78 +12,92 @@ import com.opencsv.CSVParser;
 import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
-import com.opencsv.exceptions.CsvException;
+import com.opencsv.exceptions.CsvValidationException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class LynxResultParser {
 
-    public static LynxResults parse(String path) {
-        List<String[]> csvData = new ArrayList<>();
-        String fileName = path;
+    private static final Logger LOGGER = LoggerFactory.getLogger(LynxResultParser.class);
+    private static final Charset CP1252 = Charset.forName("Cp1252");
 
+    public static LynxResults parse(String path) {
         CSVParser parser = new CSVParserBuilder().withSeparator(',').build();
 
-        try (CSVReader reader = new CSVReaderBuilder(new InputStreamReader(new FileInputStream(fileName), "Cp1252"))
+        try (CSVReader reader = new CSVReaderBuilder(new InputStreamReader(new FileInputStream(path), CP1252))
                 .withCSVParser(parser).build()) {
-            csvData = reader.readAll();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (CsvException e) {
-            e.printStackTrace();
+            String[] header = reader.readNext();
+            if (header == null || Arrays.stream(header).allMatch(String::isBlank)) {
+                LOGGER.warn("Lynx result file is empty: {}", path);
+                return null;
+            }
+
+            int eventNumber = Integer.parseInt(getFromArray(0, header));
+            int roundNumber = Integer.parseInt(getFromArray(1, header));
+            int heatNumber = Integer.parseInt(getFromArray(2, header));
+            String eventName = getFromArray(3, header);
+            Float wind = parseFloatOrNull(getFromArray(4, header));
+            String windUnit = getFromArray(5, header);
+            String template = getFromArray(6, header);
+            String captureTime = getFromArray(7, header);
+            String caputureDuration = getFromArray(8, header);
+            String distance = getFromArray(9, header);
+            String startTime = getFromArray(10, header);
+            String windMode = getFromArray(11, header);
+
+            List<LynxResult> results = new ArrayList<>();
+            String[] row;
+            while ((row = reader.readNext()) != null) {
+                if (Arrays.stream(row).allMatch(String::isBlank)) {
+                    break;
+                }
+                String placeStr = getFromArray(0, row);
+                if (placeStr == null || !placeStr.chars().allMatch(Character::isDigit)) {
+                    continue;
+                }
+                int place = Integer.parseInt(placeStr);
+                int bib = Integer.parseInt(getFromArray(1, row));
+                int lane = Integer.parseInt(getFromArray(2, row));
+                String lastname = getFromArray(3, row);
+                String firstname = getFromArray(4, row);
+                String affiliation = getFromArray(5, row);
+                String time = getFromArray(6, row);
+                String license = getFromArray(7, row);
+                //String deltaTime = getFromArray(8, row);
+                String reacTime = getFromArray(9, row);
+                /*String splits = getFromArray(10, row);
+                String user1 = getFromArray(11, row);
+                String user2 = getFromArray(12, row);
+                String user3 = getFromArray(13, row);
+                String deltaTime2 = getFromArray(14, row);
+                String deltaTime3 = getFromArray(15, row);
+                String speed = getFromArray(16, row);
+                String pace = getFromArray(17, row);*/
+
+                LynxResult result = new LynxResult(place, bib, lane, firstname, lastname, affiliation, time, license,
+                        reacTime);
+                results.add(result);
+            }
+
+            LynxEvent lynxEvent = new LynxEvent(eventNumber, roundNumber, heatNumber, eventName, wind, windUnit,
+                    template, captureTime, caputureDuration, distance, startTime, windMode);
+            return new LynxResults(lynxEvent, results);
+        } catch (IOException | CsvValidationException e) {
+            LOGGER.error("Failed to read Lynx result file: {}", path, e);
+            return null;
         }
+    }
 
-        String[] header = csvData.get(0);
-        int eventNumber = Integer.parseInt(getFromArray(0, header));
-        int roundNumber = Integer.parseInt(getFromArray(1, header));
-        int heatNumber = Integer.parseInt(getFromArray(2, header));
-        String eventName = getFromArray(3, header);
-        Float wind = header[4].isEmpty() ? null : Float.parseFloat(header[4]);
-        String windUnit = getFromArray(5, header);
-        String template = getFromArray(6, header);
-        String captureTime = getFromArray(7, header);
-        String caputureDuration = getFromArray(8, header);
-        String distance = getFromArray(9, header);
-        String startTime = getFromArray(10, header);
-        String windMode = getFromArray(11, header);
-
-        List<LynxResult> results = new ArrayList<>();
-
-        for (String[] arrays : csvData.subList(1, csvData.size())) {
-            if (Arrays.stream(arrays).allMatch(String::isBlank)) {
-                break;
-            }
-            if (arrays[0].isEmpty()) {
-                continue;
-            }
-            if (!arrays[0].chars().allMatch(Character::isDigit)) {
-                continue;
-            }
-            int place = Integer.parseInt(getFromArray(0, arrays));
-            int bib = Integer.parseInt(getFromArray(1, arrays));
-            int lane = Integer.parseInt(getFromArray(2, arrays));
-            String lastname = getFromArray(3, arrays);
-            String firstname = getFromArray(4, arrays);
-            String affiliation = getFromArray(5, arrays);
-            String time = getFromArray(6, arrays);
-            String license = getFromArray(7, arrays);
-            //String deltaTime = getFromArray(8, arrays);
-            String reacTime = getFromArray(9, arrays);
-            /*String splits = getFromArray(10, arrays);
-            String user1 = getFromArray(11, arrays);
-            String user2 = getFromArray(12, arrays);
-            String user3 = getFromArray(13, arrays);
-            String deltaTime2 = getFromArray(14, arrays);
-            String deltaTime3 = getFromArray(15, arrays);
-            String speed = getFromArray(16, arrays);
-            String pace = getFromArray(17, arrays);*/
-
-            LynxResult result = new LynxResult(place, bib, lane, firstname, lastname, affiliation, time, license,
-                    reacTime);
-            results.add(result);
+    private static Float parseFloatOrNull(String value) {
+        if (value == null) {
+            return null;
         }
-
-        LynxEvent lynxEvent =  new LynxEvent(eventNumber, roundNumber, heatNumber, eventName, wind, windUnit,
-                template, captureTime, caputureDuration, distance, startTime, windMode);
-        return new LynxResults(lynxEvent, results);
+        try {
+            return Float.parseFloat(value);
+        } catch (NumberFormatException e) {
+            LOGGER.debug("Non-numeric wind value '{}'", value, e);
+            return null;
+        }
     }
 
     private static String getFromArray(int index, String[] array) {

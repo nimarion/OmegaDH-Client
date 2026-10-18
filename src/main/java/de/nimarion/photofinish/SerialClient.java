@@ -4,8 +4,12 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import com.fazecast.jSerialComm.SerialPort;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SerialClient extends Client {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(SerialClient.class);
 
     private SerialPort serialPort;
 
@@ -16,7 +20,7 @@ public class SerialClient extends Client {
         if (!this.serialPort.openPort()) {
             throw new RuntimeException("Failed to connect to " + comPort);
         }
-        System.out.println("Connected to " + comPort);
+        LOGGER.info("Connected to {}", comPort);
     }
 
     public SerialPort getSerialPort() {
@@ -32,7 +36,7 @@ public class SerialClient extends Client {
         try (InputStream in = getInputStream()) {
             handleInputstream(in);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error("Error reading from serial port", e);
         }
     }
  

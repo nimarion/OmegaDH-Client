@@ -2,6 +2,9 @@ package de.nimarion.photofinish.osv.omega.packet;
 
 import java.util.Arrays;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import de.nimarion.photofinish.osv.Event;
 import de.nimarion.photofinish.osv.omega.OmegaPacket;
 import de.nimarion.photofinish.osv.omega.event.WindEvent;
@@ -14,6 +17,8 @@ import de.nimarion.photofinish.osv.omega.event.WindEvent;
  * Placeholder 1: UNIT
  */
 public class WindPacket extends OmegaPacket {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(WindPacket.class);
 
     public WindPacket() {
         super("RWM");
@@ -32,7 +37,7 @@ public class WindPacket extends OmegaPacket {
                 wind = Double.parseDouble(
                         wind_string);
             } catch (NumberFormatException exception) {
-                exception.printStackTrace(); 
+                LOGGER.warn("Failed to parse Omega wind value from '{}'", wind_string, exception);
             }
         }
         return new WindEvent(wind, wind_unit);

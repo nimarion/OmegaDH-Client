@@ -3,12 +3,16 @@ package de.nimarion.photofinish.lynx.scoreboard.packet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import de.nimarion.photofinish.common.result.ResultEvent;
 import de.nimarion.photofinish.lynx.scoreboard.FinishLynxPacket;
 import de.nimarion.photofinish.osv.Event;
 
 public class ResultLinePacket extends FinishLynxPacket {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(ResultLinePacket.class);
     private static final Pattern THOUSANDS_PATTERN = Pattern.compile(".*\\.(\\d{3})$");
     private static final byte[] PACKET_IDENTIFIER = new byte[] { 1, 76, 82, 2 };
 
@@ -46,7 +50,7 @@ public class ResultLinePacket extends FinishLynxPacket {
             // TODO: Round "time" up to the next hundredth
         }
         if(place == null){
-            System.out.println("Place is null! Did you turn on 'Send placing' in the Lynx software?");
+            LOGGER.warn("Place is null! Did you turn on 'Send placing' in the Lynx software?");
             place = -1;
         }
         String reactionTime = getOrDefault(splitData, 11, "");
@@ -65,7 +69,7 @@ public class ResultLinePacket extends FinishLynxPacket {
             try {
                 return Integer.parseInt(data[index].trim());
             } catch (NumberFormatException e) {
-                //e.printStackTrace();
+                LOGGER.debug("Failed to parse integer at index {} from '{}'", index, data[index], e);
             }
         }
         return defaultValue;
