@@ -9,7 +9,6 @@ import de.nimarion.photofinish.common.result.ResultEndEvent;
 import de.nimarion.photofinish.common.result.ResultEvent;
 import de.nimarion.photofinish.common.result.ResultStartEvent;
 import de.nimarion.photofinish.osv.Event;
-import de.nimarion.photofinish.osv.Packet;
 import de.nimarion.photofinish.osv.ProtocolConfiguration;
 
 public class FinishLynxClient extends TCPClient {
@@ -40,14 +39,6 @@ public class FinishLynxClient extends TCPClient {
             FullResultsEvent fullResultsEvent = new FullResultsEvent(currentRaceId, List.copyOf(results));
             super.handleEvent(fullResultsEvent);
             results.clear();
-        }
-    }
-
-    @Override
-    public void handleData(Packet packet, byte[] data) {
-        Event event = packet.handleData(new String(data, CP1252));
-        if (event != null) {
-            handleEvent(event);
         }
     }
 

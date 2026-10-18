@@ -1,7 +1,6 @@
 package de.nimarion.photofinish.osv.frontcamera;
 
 import de.nimarion.photofinish.TCPClient;
-import de.nimarion.photofinish.osv.Event;
 import de.nimarion.photofinish.osv.Packet;
 import de.nimarion.photofinish.osv.ProtocolConfiguration;
 
@@ -17,17 +16,7 @@ public class FrontcameraClient extends TCPClient {
 
     @Override
     public void handleData(Packet packet, byte[] data) {
-        Event event;
-        if (data.length <= 9) {
-            event = packet.handleData(null);
-        } else {
-            byte[] information = new byte[data.length - 10];
-            System.arraycopy(data, 8, information, 0, data.length - 10);
-            event = packet.handleData(new String(information, CP1252));
-        }
-        if (event != null) {
-            handleEvent(event);
-        }
+        handleFramedData(packet, data);
     }
-    
+
 }

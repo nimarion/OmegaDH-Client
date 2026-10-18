@@ -40,6 +40,18 @@ public abstract class Client extends Thread {
         }
     }
 
+    protected void handleFramedData(Packet packet, byte[] data) {
+        Event event;
+        if (data.length <= 9) {
+            event = packet.handleData(null);
+        } else {
+            event = packet.handleData(new String(data, 8, data.length - 10, CP1252));
+        }
+        if (event != null) {
+            handleEvent(event);
+        }
+    }
+
     public void registerPacket(Packet packet) {
         packets.add(packet);
     }
