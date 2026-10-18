@@ -8,6 +8,10 @@ import de.nimarion.photofinish.common.result.FullResultsEvent;
 import de.nimarion.photofinish.common.result.ResultEndEvent;
 import de.nimarion.photofinish.common.result.ResultEvent;
 import de.nimarion.photofinish.common.result.ResultStartEvent;
+import de.nimarion.photofinish.lynx.scoreboard.packet.ResultHeaderPacket;
+import de.nimarion.photofinish.lynx.scoreboard.packet.ResultLinePacket;
+import de.nimarion.photofinish.lynx.scoreboard.packet.ResultTrailerPacket;
+import de.nimarion.photofinish.lynx.scoreboard.packet.RunningTimePacket;
 import de.nimarion.photofinish.osv.Event;
 import de.nimarion.photofinish.osv.ProtocolConfiguration;
 
@@ -18,10 +22,14 @@ public class FinishLynxClient extends TCPClient {
 
     public FinishLynxClient(String host, int port) {
         super(host, port);
+        registerPacket(new ResultHeaderPacket());
+        registerPacket(new ResultLinePacket());
+        registerPacket(new ResultTrailerPacket());
+        registerPacket(new RunningTimePacket());
     }
 
     public FinishLynxClient(ProtocolConfiguration protocolConfiguration) {
-        super(protocolConfiguration);
+        this(protocolConfiguration.getIp(), protocolConfiguration.getPort());
     }
 
     @Override

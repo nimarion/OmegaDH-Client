@@ -19,6 +19,26 @@ import de.nimarion.photofinish.osv.omega.event.ResultThousandsEvent;
 import de.nimarion.photofinish.osv.omega.event.StartRankingEvent;
 import de.nimarion.photofinish.osv.omega.event.SupplementaryInfoDataEvent;
 import de.nimarion.photofinish.osv.omega.event.SupplementaryInfoHeaderEvent;
+import de.nimarion.photofinish.osv.omega.packet.CurrentDaytimeCursorPacket;
+import de.nimarion.photofinish.osv.omega.packet.CurrentRacetimeCursorPacket;
+import de.nimarion.photofinish.osv.omega.packet.DeleteResultPacket;
+import de.nimarion.photofinish.osv.omega.packet.EndRankingPacket;
+import de.nimarion.photofinish.osv.omega.packet.EnterRacePacket;
+import de.nimarion.photofinish.osv.omega.packet.FalseStartPacket;
+import de.nimarion.photofinish.osv.omega.packet.NetTimePacket;
+import de.nimarion.photofinish.osv.omega.packet.ReactionTimePacket;
+import de.nimarion.photofinish.osv.omega.packet.RecoverFinishPacket;
+import de.nimarion.photofinish.osv.omega.packet.ResultHundredsPacket;
+import de.nimarion.photofinish.osv.omega.packet.ResultIntermediatePacket;
+import de.nimarion.photofinish.osv.omega.packet.ResultThousandsPacket;
+import de.nimarion.photofinish.osv.omega.packet.ResultsOfficalPacket;
+import de.nimarion.photofinish.osv.omega.packet.StartRankingPacket;
+import de.nimarion.photofinish.osv.omega.packet.StartedPacket;
+import de.nimarion.photofinish.osv.omega.packet.SupplementaryInfoDataPacket;
+import de.nimarion.photofinish.osv.omega.packet.SupplementaryInfoHeaderPacket;
+import de.nimarion.photofinish.osv.omega.packet.TemporaryResultPacket;
+import de.nimarion.photofinish.osv.omega.packet.TimeTrialStartedPacket;
+import de.nimarion.photofinish.osv.omega.packet.WindPacket;
 
 public class OmegaClient extends TCPClient {
 
@@ -31,10 +51,30 @@ public class OmegaClient extends TCPClient {
 
     public OmegaClient(String host, int port) {
         super(host, port);
+        registerPacket(new CurrentDaytimeCursorPacket());
+        registerPacket(new CurrentRacetimeCursorPacket());
+        registerPacket(new DeleteResultPacket());
+        registerPacket(new EndRankingPacket());
+        registerPacket(new EnterRacePacket());
+        registerPacket(new FalseStartPacket());
+        registerPacket(new NetTimePacket());
+        registerPacket(new ReactionTimePacket());
+        registerPacket(new RecoverFinishPacket());
+        registerPacket(new ResultHundredsPacket());
+        registerPacket(new ResultIntermediatePacket());
+        registerPacket(new ResultThousandsPacket());
+        registerPacket(new ResultsOfficalPacket());
+        registerPacket(new StartRankingPacket());
+        registerPacket(new StartedPacket());
+        registerPacket(new SupplementaryInfoDataPacket());
+        registerPacket(new SupplementaryInfoHeaderPacket());
+        registerPacket(new TemporaryResultPacket());
+        registerPacket(new TimeTrialStartedPacket());
+        registerPacket(new WindPacket());
     }
 
     public OmegaClient(ProtocolConfiguration protocolConfiguration) {
-        super(protocolConfiguration);
+        this(protocolConfiguration.getIp(), protocolConfiguration.getPort());
     }
 
     @Override

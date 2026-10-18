@@ -152,12 +152,7 @@ class PacketTest {
     void testOmegaClientSingleDispatchAndCp1252Handling() {
         OmegaClient client = new OmegaClient("localhost", 0);
         List<Event> received = new ArrayList<>();
-        client.addEventHandler(new EventHandler() {
-            @Override
-            public void handleEvent(Event event) {
-                received.add(event);
-            }
-        });
+        client.addEventHandler(received::add);
 
         client.handleEvent(new EnterRaceEvent("03901001"));
         client.handleEvent(new StartRankingEvent(8));
@@ -190,12 +185,9 @@ class PacketTest {
     void testFinishLynxClientPreservesFullResultsList() {
         FinishLynxClient client = new FinishLynxClient("localhost", 0);
         List<FullResultsEvent> fullResultsEvents = new ArrayList<>();
-        client.addEventHandler(new EventHandler() {
-            @Override
-            public void handleEvent(Event event) {
-                if (event instanceof FullResultsEvent fullResultsEvent) {
-                    fullResultsEvents.add(fullResultsEvent);
-                }
+        client.addEventHandler(event -> {
+            if (event instanceof FullResultsEvent fullResultsEvent) {
+                fullResultsEvents.add(fullResultsEvent);
             }
         });
 
@@ -220,12 +212,7 @@ class PacketTest {
                 }
             };
             client.addEventHandler(selfRemovingHandler);
-            client.addEventHandler(new EventHandler() {
-                @Override
-                public void handleEvent(Event event) {
-                    received.add(event);
-                }
-            });
+            client.addEventHandler(received::add);
 
             client.handleEvent(new EnterRaceEvent("001"));
             assertEquals(2, received.size());
@@ -260,5 +247,21 @@ class PacketTest {
         org.junit.jupiter.api.Assertions.assertThrows(
                 IllegalArgumentException.class,
                 () -> de.nimarion.photofinish.utils.StringUtils.hexToAscii("01 0"));
+    }
+
+    @Test
+    void testProtocolConfigurationAndClientPacketRegistration() {
+        de.nimarion.photofinish.osv.ProtocolConfiguration config =
+                new de.nimarion.photofinish.osv.ProtocolConfiguration("127.0.0.1", 5000, true);
+        assertEquals("127.0.0.1", config.getIp());
+        assertEquals(5000, config.getPort());
+        assertTrue(config.isEnabled());
+
+        OmegaClient omegaClient = new OmegaClient(config);
+        byte[] enterRaceBytes = "\u0001\u0013DVSNR\u000203901001\u0004".getBytes(StandardCharsets.US_ASCII);
+        assertInstanceOf(EnterRacePacket.class, omegaClient.getPacket(enterRaceBytes));
+
+        FinishLynxClient lynxClient = new FinishLynxClient(config);
+        assertInstanceOf(ResultHeaderPacket.class, lynxClient.getPacket(new byte[] { 1, 76, 72, 2, 65, 4 }));
     }
 }

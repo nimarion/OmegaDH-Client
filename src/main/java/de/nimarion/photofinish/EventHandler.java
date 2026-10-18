@@ -2,7 +2,8 @@ package de.nimarion.photofinish;
 
 import de.nimarion.photofinish.osv.Event;
 
-public abstract class EventHandler {
+@FunctionalInterface
+public interface EventHandler {
 
-    public abstract void handleEvent(Event event);    
+    void handleEvent(Event event);
 }
