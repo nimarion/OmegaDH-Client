@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,17 +15,32 @@ import de.nimarion.photofinish.osv.Event;
 import de.nimarion.photofinish.osv.Packet;
 import de.nimarion.photofinish.utils.StringUtils;
 
-public abstract class Client extends Thread {
+public abstract class Client extends Thread implements AutoCloseable {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Client.class);
     protected static final Charset CP1252 = Charset.forName("Cp1252");
 
-    private List<EventHandler> eventHandlers;
+    private final List<EventHandler> eventHandlers;
     private final List<Packet> packets;
+    private volatile boolean active = true;
 
     public Client() {
-        this.eventHandlers = new ArrayList<>();
+        this.eventHandlers = new CopyOnWriteArrayList<>();
         this.packets = new ArrayList<>();
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    @Override
+    public void close() {
+        this.active = false;
+        this.interrupt();
     }
 
     public void handleEvent(Event event) {
@@ -76,7 +92,7 @@ public abstract class Client extends Thread {
     public void handleInputstream(InputStream inputStream) throws IOException {
         int read;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        while ((read = inputStream.read()) != -1) {
+        while (active && (read = inputStream.read()) != -1) {
             if (read == 0) {
                 continue;
             }

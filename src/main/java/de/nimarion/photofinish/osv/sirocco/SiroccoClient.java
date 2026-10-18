@@ -18,7 +18,7 @@ public class SiroccoClient extends SerialClient {
     public void handleInputstream(InputStream inputStream) throws IOException {
         int read;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        while ((read = inputStream.read()) != -1) {
+        while (isActive() && (read = inputStream.read()) != -1) {
             baos.write(read);
             if (read == 3) {
                 Packet packet = new WindPacket();

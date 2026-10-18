@@ -21,7 +21,7 @@ public abstract class TCPClient extends Client {
     private final String host;
     private final int port;
     private int autoReconnectDelay = 5;
-    private boolean active = true;
+    private volatile Socket currentSocket;
 
     public TCPClient(String host, int port) {
         LOGGER.info("Starting {} Client on {}:{}", this.getClass().getSimpleName(), host, port);
@@ -57,14 +57,23 @@ public abstract class TCPClient extends Client {
 
     @Override
     public void run() {
-        while (true) {
-            if (active) {
-                try (Socket socket = new Socket(host, port);
-                        InputStream is = socket.getInputStream()) {
-                    handleInputstream(is);
-                } catch (IOException e) {
+        while (isActive() && !Thread.currentThread().isInterrupted()) {
+            try (Socket socket = new Socket(host, port);
+                    InputStream is = socket.getInputStream()) {
+                this.currentSocket = socket;
+                if (!isActive()) {
+                    break;
+                }
+                handleInputstream(is);
+            } catch (IOException e) {
+                if (isActive()) {
                     LOGGER.error("Connection error on {}:{}", host, port, e);
                 }
+            } finally {
+                this.currentSocket = null;
+            }
+            if (!isActive()) {
+                break;
             }
             try {
                 TimeUnit.SECONDS.sleep(autoReconnectDelay);
@@ -72,6 +81,19 @@ public abstract class TCPClient extends Client {
                 Thread.currentThread().interrupt();
                 LOGGER.warn("Reconnect delay interrupted", e);
                 break;
+            }
+        }
+    }
+
+    @Override
+    public void close() {
+        super.close();
+        Socket socket = this.currentSocket;
+        if (socket != null) {
+            try {
+                socket.close();
+            } catch (IOException e) {
+                LOGGER.debug("Error closing socket on {}:{}", host, port, e);
             }
         }
     }

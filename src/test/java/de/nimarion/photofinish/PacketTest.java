@@ -206,4 +206,38 @@ class PacketTest {
         assertEquals(1, fullResultsEvents.size());
         assertEquals(1, fullResultsEvents.get(0).getResults().size());
     }
+
+    @Test
+    void testConcurrentEventHandlerModificationAndClientClose() throws Exception {
+        try (java.net.ServerSocket serverSocket = new java.net.ServerSocket(0)) {
+            OmegaClient client = new OmegaClient("127.0.0.1", serverSocket.getLocalPort());
+            List<Event> received = new ArrayList<>();
+            EventHandler selfRemovingHandler = new EventHandler() {
+                @Override
+                public void handleEvent(Event event) {
+                    client.removeEventHandler(this);
+                    received.add(event);
+                }
+            };
+            client.addEventHandler(selfRemovingHandler);
+            client.addEventHandler(new EventHandler() {
+                @Override
+                public void handleEvent(Event event) {
+                    received.add(event);
+                }
+            });
+
+            client.handleEvent(new EnterRaceEvent("001"));
+            assertEquals(2, received.size());
+
+            client.start();
+            try (java.net.Socket accepted = serverSocket.accept()) {
+                assertTrue(client.isActive());
+                client.close();
+                client.join(2000);
+                assertFalse(client.isActive());
+                assertFalse(client.isAlive());
+            }
+        }
+    }
 }

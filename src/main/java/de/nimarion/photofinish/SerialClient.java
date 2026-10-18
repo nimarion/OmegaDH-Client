@@ -11,7 +11,7 @@ public class SerialClient extends Client {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SerialClient.class);
 
-    private SerialPort serialPort;
+    private final SerialPort serialPort;
 
     public SerialClient(String comPort) {
         this.serialPort = SerialPort.getCommPort(comPort);
@@ -36,8 +36,24 @@ public class SerialClient extends Client {
         try (InputStream in = getInputStream()) {
             handleInputstream(in);
         } catch (IOException e) {
-            LOGGER.error("Error reading from serial port", e);
+            if (isActive()) {
+                LOGGER.error("Error reading from serial port", e);
+            }
+        } finally {
+            closePort();
         }
     }
- 
+
+    @Override
+    public void close() {
+        super.close();
+        closePort();
+    }
+
+    private void closePort() {
+        if (serialPort != null && serialPort.isOpen()) {
+            serialPort.closePort();
+        }
+    }
+
 }
